@@ -1,0 +1,72 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: {{application_name}}
+  namespace: default
+  labels:
+    team: {{team}}
+spec:
+  image: {{image}}
+  port: 8000
+  replicas:
+    min: 2
+    max: 3
+    cpuThresholdPercentage: 70
+  liveness:
+    path: /isAlive
+    timeout: 1
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
+  readiness:
+    path: /isReady
+    timeout: 1
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
+  env:
+    - name: COLLECTION_IDENTIFIER
+      value: {{term_collection_identifier}}
+    - name: COLLECTION_PUBLISHER
+      value: {{collection_publisher}}
+    - name: TERM_COLLECTION_NAME
+      value: {{term_collection_name}}
+    - name: TERM_CONCEPT_IDENTIFIER
+      value: {{term_concept_identifier}}
+    - name: TERM_CONCEPT_TYPE
+      value: {{term_concept_type}}
+    - name: DATASET_COLLECTION_NAME
+      value: {{dataset_collection_name}}
+    - name: DATASET_CONCEPT_IDENTIFIER
+      value: {{dataset_concept_identifier}}
+    - name: DATASET_CONCEPT_TYPE
+      value: {{dataset_concept_type}}
+    - name: ES_INDEX_ENDPOINT
+      value: {{es_index_endpoint}}
+    - name: NO_PROXY
+      value: {{no_proxy}}
+    - name: no_proxy
+      value: {{no_proxy}}
+    - name: CERT_PATH
+      value: {{cert_path}}
+    - name: REQUESTS_CA_BUNDLE
+      value: {{cert_path}}
+    - name: PRODUCTION
+      value: "true"
+  ingresses:
+    - {{ingress}}
+  leaderElection: false
+  vault:
+    enabled: true
+  prometheus:
+    enabled: true
+    path: /metrics
+  istio:
+    enabled: false
+  resources:
+    limits:
+      cpu: 400m
+      memory: 1024Mi
+    requests:
+      cpu: 50m
+      memory: 1024Mi

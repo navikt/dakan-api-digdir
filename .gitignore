@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+**/.env
+poetry.lock
+.idea
+*.egg-info
+.vscode
