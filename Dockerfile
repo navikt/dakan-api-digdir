@@ -6,5 +6,4 @@ RUN pip3 install poetry && \
     poetry config virtualenvs.create false && \
     poetry install
 
-ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 CMD ["uvicorn", "digdir_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
