@@ -26,7 +26,7 @@ spec:
     failureThreshold: 30
   env:
     - name: COLLECTION_IDENTIFIER
-      value: {{term_collection_identifier}}
+      value: {{collection_identifier}}
     - name: COLLECTION_PUBLISHER
       value: {{collection_publisher}}
     - name: TERM_COLLECTION_NAME

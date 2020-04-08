@@ -2,14 +2,15 @@
   "application_name": "digdir-api",
   "ingress": "https://digdir-api.nais.oera-q.local",
   "team": "dataplattform",
-  "term_collection_identifier": "https://dataverk.nav.no",
+  "collection_identifier": "https://dataverk.nav.no",
+  "collection_publisher": "https://nav.no",
   "term_collection_name": "Godkjente begreper",
-  "term_collection_publisher": "https://nav.no",
-  "es_index_endpoint":"https://dataverk.nav.no/api/odata",
+  "term_concept_identifier": "https://dataverk.nav.no/begrep/",
   "term_concept_type": "godkjent_begrep",
   "dataset_collection_name": "Datasett",
   "dataset_concept_identifier": "https://dataverk.nav.no/datapakke/",
   "dataset_concept_type": "datapackage",
+  "es_index_endpoint":"https://dataverk.nav.no/api/odata",
   "cert_path": "/etc/pki/tls/certs/ca-bundle.crt",
   "no_proxy": "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.devillo.no,.oera.no,.nais.io"
 }
