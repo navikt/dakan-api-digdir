@@ -13,13 +13,13 @@ spec:
     max: 3
     cpuThresholdPercentage: 70
   liveness:
-    path: /isAlive
+    path: /digdir-api/isAlive
     timeout: 1
     initialDelay: 5
     periodSeconds: 5
     failureThreshold: 30
   readiness:
-    path: /isReady
+    path: /digdir-api/isReady
     timeout: 1
     initialDelay: 5
     periodSeconds: 5
@@ -60,7 +60,7 @@ spec:
   leaderElection: false
   prometheus:
     enabled: true
-    path: /metrics
+    path: /digdir-api/metrics
   istio:
     enabled: false
   resources:

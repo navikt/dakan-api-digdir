@@ -13,9 +13,9 @@ except KeyError:
     logging.warning("Getting env variables from .env file")
     load_dotenv()
 
-app = FastAPI(docs_url=None, redoc_url=None, swagger_static={"favicon": "/static/favicon.png"})
+app = FastAPI(docs_url=None, redoc_url=None, swagger_static={"favicon": "/digdir-api/static/favicon.png"})
 
-app.mount("/static", StaticFiles(directory="src/digdir_api/static"), name="static")
+app.mount("/digdir-api/static", StaticFiles(directory="src/digdir_api/static"), name="static")
 
 
 @app.get("/digdir-api/docs", include_in_schema=False)
@@ -23,8 +23,8 @@ async def custom_swagger_ui_html():
     return get_swagger_ui_html(
         openapi_url=app.openapi_url,
         title=app.title + " - Swagger UI",
-        swagger_js_url="/static/swagger-ui-bundle.js",
-        swagger_css_url="/static/swagger-ui.css",
+        swagger_js_url="/digdir-api/static/swagger-ui-bundle.js",
+        swagger_css_url="/digdir-api/static/swagger-ui.css",
     )
 
 app.include_router(health.router)
