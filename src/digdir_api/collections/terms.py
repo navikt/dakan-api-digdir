@@ -1,4 +1,6 @@
 import os
+import datetime as dt
+
 from concepttordf import Concept, Definition
 from digdir_api.collections.collections import BaseCollection
 
@@ -21,4 +23,13 @@ class TermCollection(BaseCollection):
         definition = Definition()
         definition.text = {"nb": hit["_source"]["content"]["begrepsforklaring"]}
         c.definition = definition
+
+        c.publisher = os.environ["PUBLISHER"]
+        try:
+            c.bruksomrade = hit["_source"]["content"]["fagomrade"]
+        except KeyError:
+            c.bruksomrade = ""
+
+        date = dt.datetime.strptime(hit["_source"]["content"]["oppdatert"].split('T')[0], "%Y-%m-%d")
+        c.modified = dt.date(year=date.year, month=date.month, day=date.day)
         return c
