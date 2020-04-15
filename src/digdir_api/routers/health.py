@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 router = APIRouter()
 
 
-@router.get("/isAlive", include_in_schema=False)
+@router.get("/digdir-api/isAlive", include_in_schema=False)
 async def is_alive_status():
     """
     Alive check
@@ -12,7 +12,7 @@ async def is_alive_status():
     return JSONResponse(status_code=status.HTTP_200_OK, content={})
 
 
-@router.get("/isReady", include_in_schema=False)
+@router.get("/digdir-api/isReady", include_in_schema=False)
 async def is_ready_status():
     """
     Ready check

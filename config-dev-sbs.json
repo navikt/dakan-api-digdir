@@ -1,6 +1,6 @@
 {
   "application_name": "digdir-api",
-  "ingress": "https://digdir-api.nais.oera-q.local",
+  "ingress": "https://digdir-api.nais.oera-q.local/digdir-api",
   "team": "dataplattform",
   "collection_identifier": "https://dataverk.nav.no",
   "collection_publisher": "https://nav.no",

@@ -18,7 +18,7 @@ app = FastAPI(docs_url=None, redoc_url=None, swagger_static={"favicon": "/static
 app.mount("/static", StaticFiles(directory="src/digdir_api/static"), name="static")
 
 
-@app.get("/docs", include_in_schema=False)
+@app.get("/digdir-api/docs", include_in_schema=False)
 async def custom_swagger_ui_html():
     return get_swagger_ui_html(
         openapi_url=app.openapi_url,
