@@ -25,6 +25,8 @@ spec:
     periodSeconds: 5
     failureThreshold: 30
   env:
+    - name: PUBLISHER
+      value: "NAV"
     - name: COLLECTION_IDENTIFIER
       value: {{collection_identifier}}
     - name: COLLECTION_PUBLISHER

@@ -1,5 +1,5 @@
 import os
-from concepttordf import Concept, Definition
+from concepttordf import Concept, Definition, Contact, AlternativFormulering
 from digdir_api.collections.collections import BaseCollection
 
 
@@ -20,5 +20,30 @@ class DatasetCollection(BaseCollection):
         c.term = {"name": {"nb": hit["_source"]["title"]}}
         definition = Definition()
         definition.text = {"nb": hit["_source"]["description"]}
+
+        try:
+            definition.remark = {"nb": hit["_source"]["readme"]}
+        except KeyError:
+            definition.remark = {"nb": ""}
+
+        contact = Contact()
+
+        try:
+            contact.email = hit["_source"]["contactpoint"]["email"]
+            contact.name = {"nb": hit["_source"]["contactpoint"]["name"]}
+        except KeyError:
+            contact.email = hit["_source"]["creator"]["email"]
+            contact.name = {"nb": hit["_source"]["creator"]["name"]}
+
+        c.contactpoint = contact
         c.definition = definition
+
+        c.validinperiod = {
+                           "Gyldig fra og med": hit["_source"]["temporal"]["from"],
+                           "Gyldig til og med": hit["_source"]["temporal"]["to"]
+                           }
+
+        c.bruksomrade = {"nb": hit["_source"]["theme"][0]}
+        c.publisher = os.environ["PUBLISHER"]
+
         return c

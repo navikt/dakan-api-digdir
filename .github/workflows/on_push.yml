@@ -34,3 +34,16 @@ jobs:
           CLUSTER: dev-sbs
           RESOURCE: naiserator.yaml
           VARS: config-dev-sbs.json
+
+  deploy-prod:
+    name: deploy to nais prod-sbs cluster
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-sbs
+          RESOURCE: naiserator.yaml
+          VARS: config-prod-sbs.json
