@@ -16,7 +16,7 @@ class TermCollection(BaseCollection):
             concept_type=os.environ["TERM_CONCEPT_TYPE"]
         )
 
-    def _convert_to_concept(self, hit):
+    def _convert_to_concept(self, hit) -> Concept:
         c = Concept()
         c.identifier = self._concept_identifier + hit["_id"]
         c.term = {"name": {"nb": hit["_source"]["title"]}}

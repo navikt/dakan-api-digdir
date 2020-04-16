@@ -9,14 +9,14 @@ from datacatalogtordf import Catalog, Dataset, Distribution, PeriodOfTime, URI, 
 
 class DatapackageCatalog:
 
-    async def create(self):
+    async def create(self) -> str:
         catalog = Catalog()
         catalog.title = {"nb": "NAV åpne datapakker"}
         catalog.identifier = os.environ["COLLECTION_IDENTIFIER"]
 
         return self._populate_catalog(catalog)
 
-    def _populate_catalog(self, catalog: Catalog, size=10000):
+    def _populate_catalog(self, catalog: Catalog, size=10000) -> str:
         res = requests.post(os.environ["ES_INDEX_ENDPOINT"],
                             json={
                                 "size": size,
@@ -33,60 +33,26 @@ class DatapackageCatalog:
 
         return catalog.to_rdf().decode()
 
-    def _convert_to_dataset(self, hit: Mapping):
+    def _convert_to_dataset(self, hit: Mapping) -> Dataset:
         dataset = Dataset()
+
+        dataset.title = {"nb": hit["title"]}
         dataset.identifier = os.environ["DATASET_CONCEPT_IDENTIFIER"] + hit["id"]
         dataset.description = hit["description"]
         dataset.publisher = os.environ["PUBLISHER"]
 
-        dataset.title = {"nb": hit["title"]}
-
-        # Contact
-        contact = Contact()
-        try:
-            contact.name = hit["contactpoint"]["name"]
-            contact.email = hit["contactpoint"]["email"]
-        except KeyError:
-            contact.name = ""
-            contact.email = ""
-
-        dataset.contactpoint = contact
-
-        # Dates
-
-        #dataset.release_date = dt.datetime.strptime(str(hit["issued"].split('T')[0]), "%Y-%m-%d")
-        #dataset.modification_date = dt.datetime.strptime(hit["modified"].split('T')[0], "%Y-%m-%d")
-
-        #Theme
-        try:
-            dataset.theme = hit["theme"][0]
-        except:
-            print(hit["title"])
-
+        dataset.contactpoint = self._create_contact(hit)
         dataset.creator = os.environ["PUBLISHER"]
         dataset.access_rights = hit["accessRights"]
         dataset.frequency = hit.get("periodicity", "")
 
-        # License
-        uri = URI(hit["license"]["url"])
-        dataset.license = uri
-
-        #Period
-
-        period = PeriodOfTime()
-        try:
-            period.start_date = hit["temporal"]["from"]
-            period.end_date = hit["temporal"]["to"]
-        except InvalidDateError:
-            print(hit["title"])
-
-        dataset.temporal_coverage = period
-
+        dataset.license = self._create_license(hit)
+        dataset.temporal_coverage = self._create_temporal_coverage(hit)
         dataset.language = hit["language"]
 
         return self._add_distributions(dataset, hit["url"])
 
-    def _add_distributions(self, dataset: Dataset, metadata_url):
+    def _add_distributions(self, dataset: Dataset, metadata_url: str) -> Dataset:
         res = requests.get(metadata_url)
 
         for resource in res.json()["resources"]:
@@ -98,9 +64,37 @@ class DatapackageCatalog:
     @staticmethod
     def _create_distribution(resource: Mapping) -> Distribution:
         distribution = Distribution()
+
         distribution.description = resource["description"]
         distribution.title = resource["name"]
         distribution.access_URL = resource["path"]
         distribution.download_URL = resource["path"]
 
         return distribution
+
+    @staticmethod
+    def _create_contact(hit):
+        contact = Contact()
+        try:
+            contact.name = hit["contactpoint"]["name"]
+            contact.email = hit["contactpoint"]["email"]
+        except KeyError:
+            contact.name = ""
+            contact.email = ""
+
+        return contact
+
+    @staticmethod
+    def _create_license(hit):
+        return URI(hit["license"]["url"])
+
+    @staticmethod
+    def _create_temporal_coverage(hit):
+        period = PeriodOfTime()
+        try:
+            period.start_date = hit["temporal"]["from"]
+            period.end_date = hit["temporal"]["to"]
+        except InvalidDateError:
+            print(hit["title"])
+
+        return period
