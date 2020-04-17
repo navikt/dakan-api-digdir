@@ -13,10 +13,10 @@ router = APIRouter()
 @router.get("/dataset", response_class=ResponseModel)
 async def get_all_datasets():
     datasets = await DatasetCollection().create()
-    return Response(status_code=status.HTTP_200_OK, content=datasets, media_type="text/turtle")
+    return Response(status_code=status.HTTP_200_OK, content=datasets.decode(), media_type="text/turtle")
 
 
 @router.get("/datapackages", response_class=ResponseModel)
 async def get_all_datapackage():
     datapackages = await DatapackageCatalog().create()
-    return Response(status_code=status.HTTP_200_OK, content=datapackages, media_type="text/turtle")
+    return Response(status_code=status.HTTP_200_OK, content=datapackages.decode(), media_type="text/turtle")
