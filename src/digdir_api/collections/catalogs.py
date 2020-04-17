@@ -1,6 +1,5 @@
 import os
 import requests
-import datetime as dt
 
 from typing import Mapping
 from concepttordf import Contact
@@ -31,7 +30,7 @@ class DatapackageCatalog:
             dataset = self._convert_to_dataset(hit["_source"])
             catalog.datasets.append(dataset)
 
-        return catalog.to_rdf().decode()
+        return catalog.to_rdf()
 
     def _convert_to_dataset(self, hit: Mapping) -> Dataset:
         dataset = Dataset()

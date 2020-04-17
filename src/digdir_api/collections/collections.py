@@ -37,7 +37,7 @@ class BaseCollection(ABC):
             concept = self._convert_to_concept(hit)
             collection.members.append(concept)
 
-        return collection.to_rdf().decode()
+        return collection.to_rdf()
 
     @abstractmethod
     def _convert_to_concept(self, hit: Mapping):
