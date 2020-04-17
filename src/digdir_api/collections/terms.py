@@ -25,10 +25,10 @@ class TermCollection(BaseCollection):
         c.definition = definition
 
         c.publisher = os.environ["PUBLISHER"]
-        try:
-            c.bruksomrade = hit["_source"]["content"]["fagomrade"]
-        except KeyError:
-            c.bruksomrade = ""
+        # try:
+        #     c.bruksomrade = {"nb": hit["_source"]["content"]["fagomrade"]}
+        # except KeyError:
+        #     c.bruksomrade = {"nb": ""}
 
         date = dt.datetime.strptime(hit["_source"]["content"]["oppdatert"].split('T')[0], "%Y-%m-%d")
         c.modified = dt.date(year=date.year, month=date.month, day=date.day)
