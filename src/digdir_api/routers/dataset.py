@@ -1,22 +1,13 @@
-from typing import Type
-
 from fastapi import APIRouter
 from starlette import status
 from starlette.responses import Response
-from digdir_api.collections.dataset import DatasetCollection
-from digdir_api.collections.catalogs import DatapackageCatalog
+from digdir_api.collections.datasets import catalog
 from digdir_api.models.model import ResponseModel
 
 router = APIRouter()
 
 
-@router.get("/dataset", response_class=ResponseModel)
-async def get_all_datasets():
-    datasets = await DatasetCollection().create()
+@router.get("/datasets", response_class=ResponseModel)
+def get_all_datasets():
+    datasets = catalog.create_catalog()
     return Response(status_code=status.HTTP_200_OK, content=datasets.decode(), media_type="text/turtle")
-
-
-@router.get("/datapackages", response_class=ResponseModel)
-async def get_all_datapackage():
-    datapackages = await DatapackageCatalog().create()
-    return Response(status_code=status.HTTP_200_OK, content=datapackages.decode(), media_type="text/turtle")
