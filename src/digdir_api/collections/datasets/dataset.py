@@ -17,20 +17,21 @@ def create_dataset(es_hit: Mapping) -> Dataset:
 
 def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.title = {"nb": es_hit["title"]}
-    dataset.identifier = os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"]
-    dataset.description = es_hit["description"]
-    dataset.publisher = os.environ["PUBLISHER"]
+    dataset.identifier = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"])
+    dataset.description = {"nb": es_hit["description"]}
+    dataset.publisher = URI(os.environ["PUBLISHER"])
 
 
 def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.contactpoint = utils.create_contact(es_hit["contactPoint"])
-    dataset.creator = os.environ["PUBLISHER"]
-    dataset.access_rights = es_hit["accessRights"]
-    dataset.frequency = es_hit.get("periodicity", "")
+    dataset.creator = URI(os.environ["PUBLISHER"])
+    dataset.access_rights = URI(es_hit["accessRights"])
+    dataset.frequency = URI(es_hit.get("periodicity", ""))
 
     dataset.license = URI(es_hit["license"]["url"])
-    dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"])
-    dataset.language = es_hit["language"]
+    dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"], es_hit["title"])
+    dataset.language = [es_hit["language"]]
+
 
 
 def _add_distributions(dataset: Dataset, metadata_url: str) -> Dataset:

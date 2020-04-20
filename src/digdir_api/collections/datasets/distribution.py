@@ -1,5 +1,5 @@
 from typing import Mapping
-from datacatalogtordf import Distribution
+from datacatalogtordf import Distribution, URI
 
 
 def create_distribution(resource: Mapping) -> Distribution:
@@ -13,10 +13,11 @@ def create_distribution(resource: Mapping) -> Distribution:
 
 def _add_mandatory_distribution_props(distribution: Distribution, resource: Mapping) -> None:
     distribution.formats.append(resource["format"])
-    distribution.access_URL = resource["path"]
+    distribution.access_URL = URI(resource["path"])
+    distribution.identifier = URI(resource["path"])
 
 
 def _add_optional_distribution_props(distribution: Distribution, resource: Mapping) -> None:
-    distribution.title = resource["name"]
-    distribution.description = resource["description"]
-    distribution.download_URL = resource["path"]
+    distribution.title = {"nb": resource["name"]}
+    distribution.description = {"nb": resource["description"]}
+    distribution.download_URL = URI(resource["path"])

@@ -1,26 +1,27 @@
 from typing import Mapping
-from concepttordf import Contact
+from concepttordf import Contact, Definition
 from datacatalogtordf import PeriodOfTime, InvalidDateError
 
 
-def create_contact(contactpoint: Mapping):
+def create_contact(contactpoint: Mapping) -> Contact:
     contact = Contact()
-    try:
-        contact.name = contactpoint["name"]
-        contact.email = contactpoint["email"]
-    except KeyError:
-        contact.name = ""
-        contact.email = ""
+
+    contact.name = {"nb": contactpoint["name"]}
+    contact.email = contactpoint["email"]
 
     return contact
 
 
-def create_temporal_coverage(temporal: Mapping):
+def create_temporal_coverage(temporal: Mapping, name: str) -> PeriodOfTime:
     period = PeriodOfTime()
-    try:
-        period.start_date = temporal["from"]
-        period.end_date = temporal["to"]
-    except InvalidDateError:
-        print("huff")
+
+    period.start_date = temporal["from"]
+    period.end_date = temporal["to"]
 
     return period
+
+
+def create_definition(text: Mapping) -> Definition:
+    definition = Definition()
+    definition.text = text
+    return definition
