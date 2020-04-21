@@ -1,0 +1,1 @@
+![](https://github.com/navikt/digdir-api/workflows/Build%20and%20deploy%20dev/badge.svg)
