@@ -16,7 +16,7 @@ def create_dataset(es_hit: Mapping) -> Dataset:
 
 
 def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
-    dataset.title = {"nb": es_hit["title"]}
+    dataset.title = {"nb": utils.remove_new_line(es_hit["title"])}
     dataset.identifier = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"])
     dataset.description = {"nb": es_hit["description"]}
     dataset.publisher = URI(os.environ["PUBLISHER"])
@@ -29,7 +29,7 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.frequency = URI(es_hit.get("periodicity", ""))
 
     dataset.license = URI(es_hit["license"]["url"])
-    dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"], es_hit["title"])
+    dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"])
     dataset.language = [es_hit["language"]]
 
 

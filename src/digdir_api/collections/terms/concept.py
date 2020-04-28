@@ -16,15 +16,18 @@ def create_concept(es_hit: Mapping) -> Concept:
 
 def _add_mandatory_concept_props(concept, es_hit) -> None:
     concept.identifier = os.environ["TERM_CONCEPT_IDENTIFIER"] + es_hit["id"]
-    concept.term = {"name": {"nb": es_hit["title"]}}
-    concept.definition = utils.create_definition({"nb": es_hit["content"]["begrepsforklaring"]})
+    concept.term = {"name": {"nb": utils.remove_new_line(es_hit["title"])},
+                    "kilde": {"nb": utils.remove_new_line(es_hit["content"]["kilde"])}
+
+                    }
+    concept.definition = utils.create_definition({"nb": utils.remove_new_line(es_hit["content"]["begrepsforklaring"])})
+
+    concept.publisher = os.environ["PUBLISHER"]
 
 
 def _add_optional_concept_props(concept, es_hit) -> None:
-    concept.publisher = os.environ["PUBLISHER"]
-
     try:
-        concept.bruksomrade = {"nb": es_hit["content"]["fagomrade"]}
+        concept.bruksomrade = {"nb": utils.remove_new_line(es_hit["content"]["fagomrade"])}
     except KeyError:
         concept.bruksomrade = {"nb": ""}
 

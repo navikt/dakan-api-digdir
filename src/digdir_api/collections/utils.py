@@ -1,6 +1,6 @@
 from typing import Mapping
 from concepttordf import Contact, Definition
-from datacatalogtordf import PeriodOfTime, InvalidDateError
+from datacatalogtordf import PeriodOfTime
 
 
 def create_contact(contactpoint: Mapping) -> Contact:
@@ -12,7 +12,7 @@ def create_contact(contactpoint: Mapping) -> Contact:
     return contact
 
 
-def create_temporal_coverage(temporal: Mapping, name: str) -> PeriodOfTime:
+def create_temporal_coverage(temporal: Mapping) -> PeriodOfTime:
     period = PeriodOfTime()
 
     period.start_date = temporal["from"]
@@ -25,3 +25,13 @@ def create_definition(text: Mapping) -> Definition:
     definition = Definition()
     definition.text = text
     return definition
+
+
+def remove_new_line(string: str) -> str:
+    try:
+        new_string = string.replace("\n", "").replace("\r", "")
+    except AttributeError:
+        new_string = ''
+    return new_string
+
+
