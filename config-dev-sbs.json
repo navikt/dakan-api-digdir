@@ -11,5 +11,6 @@
   "dataset_concept_identifier": "https://dataverk.nav.no/datapakke/",
   "dataset_concept_type": "datapackage",
   "es_index_endpoint":"https://dataverk.nav.no/api/odata",
-  "cert_path": "/etc/pki/tls/certs/ca-bundle.crt"
+  "cert_path": "/etc/pki/tls/certs/ca-bundle.crt",
+  "term_concept_contact": "begrepskatalogen@nav.no"
 }

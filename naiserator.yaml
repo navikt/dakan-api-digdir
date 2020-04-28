@@ -37,6 +37,8 @@ spec:
       value: {{term_collection_name}}
     - name: TERM_CONCEPT_IDENTIFIER
       value: {{term_concept_identifier}}
+    - name: TERM_CONCEPT_CONTACT
+      value: {{term_concept_contact}}
     - name: TERM_CONCEPT_TYPE
       value: {{term_concept_type}}
     - name: DATASET_COLLECTION_NAME
