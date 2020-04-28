@@ -25,10 +25,9 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
 
 def _add_optional_concept_props(concept, es_hit) -> None:
     try:
-        concept.bruksomrade = {"nb": [utils.remove_new_line(es_hit["content"]["fagomrade"])]}
-        print(es_hit["content"]["fagomrade"])
+        concept.subject = {"nb": [utils.remove_new_line(es_hit["content"]["fagomrade"])]}
     except KeyError:
-        concept.bruksomrade = {"nb": ""}
+        concept.subject = {"nb": ""}
 
     concept.contactpoint = utils.create_contact({"email": os.environ["TERM_CONCEPT_CONTACT"]})
 
