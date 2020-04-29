@@ -6,7 +6,7 @@ from digdir_api.collections import utils
 
 
 def create_concept(es_hit: Mapping) -> Concept:
-    term = Concept()
+    term = Con  cept()
     _add_mandatory_concept_props(term, es_hit)
     _add_optional_concept_props(term, es_hit)
 
@@ -25,7 +25,7 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
 
 def _add_optional_concept_props(concept, es_hit) -> None:
     try:
-        concept.subject = {"nb": [utils.remove_new_line(es_hit["content"]["fagomrade"])]}
+        concept.subject = {"nb": utils.remove_new_line(es_hit["content"]["fagomrade"])}
     except KeyError:
         concept.subject = {"nb": ""}
 
