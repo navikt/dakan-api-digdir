@@ -18,7 +18,7 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
     concept.term = {
         "name": {"nb": utils.remove_new_line(es_hit["title"])}
     }
-    concept.definition = utils.create_definition({"nb": utils.remove_new_line(es_hit["content"]["begrepsforklaring"])},
+    concept.definition = utils.create_definition({"nb": utils.remove_new_line(es_hit["description"])},
                                                  {"text": {"nb": utils.remove_new_line(es_hit["content"]["kilde"])}})
     concept.publisher = os.environ["PUBLISHER"]
 
