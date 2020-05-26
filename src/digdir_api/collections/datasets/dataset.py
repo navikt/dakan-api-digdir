@@ -33,7 +33,7 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.language = [es_hit["language"]]
 
 
-def _add_distributions(dataset: Dataset, metadata_url: str) -> Dataset:
+def _add_distributions(dataset: Dataset, metadata_url: str):
     res = requests.get(metadata_url)
 
     for resource in res.json()["resources"]:

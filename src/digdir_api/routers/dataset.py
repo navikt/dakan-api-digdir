@@ -10,4 +10,4 @@ router = APIRouter()
 @router.get("/datasets", response_class=ResponseModel)
 def get_all_datasets():
     datasets = catalog.create_catalog()
-    return Response(status_code=status.HTTP_200_OK, content=datasets.decode(), media_type="text/turtle")
+    return Response(status_code=status.HTTP_200_OK, content=datasets, media_type="text/turtle")

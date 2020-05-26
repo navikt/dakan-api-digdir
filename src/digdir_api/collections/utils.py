@@ -1,4 +1,7 @@
+import os
 from typing import Mapping
+
+import requests
 from concepttordf import Contact, Definition
 from concepttordf.betydningsbeskrivelse import RelationToSource
 from datacatalogtordf import PeriodOfTime
@@ -38,3 +41,15 @@ def remove_new_line(string: str) -> str:
     return new_string
 
 
+def get_es_docs_of_type(doc_type: str, size: int):
+    res = requests.post(os.environ["ES_INDEX_ENDPOINT"],
+                        json={
+                            "size": size,
+                            "query": {
+                                "match": {
+                                    "type": doc_type
+                                }
+                            }
+                        })
+
+    return res.json()["hits"]["hits"]

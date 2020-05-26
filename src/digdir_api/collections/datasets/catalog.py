@@ -1,7 +1,8 @@
 import os
-import requests
+
 from datacatalogtordf import Catalog, URI
 from digdir_api.collections.datasets import dataset
+from digdir_api.collections import utils
 
 
 def create_catalog() -> str:
@@ -10,7 +11,7 @@ def create_catalog() -> str:
     _add_optional_catalog_props(catalog)
     _add_datasets(catalog)
 
-    return catalog.to_rdf()
+    return catalog.to_rdf().decode()
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
@@ -24,16 +25,8 @@ def _add_optional_catalog_props(catalog: Catalog) -> None:
 
 
 def _add_datasets(catalog: Catalog, size=10000) -> None:
-    res = requests.post(os.environ["ES_INDEX_ENDPOINT"],
-                        json={
-                            "size": size,
-                            "query": {
-                                "match": {
-                                    "type": "datapackage"
-                                }
-                            }
-                        })
+    es_hits = utils.get_es_docs_of_type(doc_type=os.environ["DATASET_CONCEPT_TYPE"], size=size)
 
-    for es_hit in res.json()["hits"]["hits"]:
+    for es_hit in es_hits:
         ds = dataset.create_dataset(es_hit["_source"])
         catalog.datasets.append(ds)

@@ -1,9 +1,8 @@
 import os
-import requests
-
 
 from concepttordf import Collection
 from digdir_api.collections.terms import concept
+from digdir_api.collections import utils
 
 
 def create_collection() -> str:
@@ -11,7 +10,7 @@ def create_collection() -> str:
     _add_mandatory_collection_props(collection)
     _add_concepts(collection)
 
-    return collection.to_rdf()
+    return collection.to_rdf().decode()
 
 
 def _add_mandatory_collection_props(collection) -> None:
@@ -22,16 +21,8 @@ def _add_mandatory_collection_props(collection) -> None:
 
 
 def _add_concepts(collection: Collection, size=10000) -> None:
-    res = requests.post(os.environ["ES_INDEX_ENDPOINT"],
-                        json={
-                            "size": size,
-                            "query": {
-                                "match": {
-                                    "type": os.environ["TERM_CONCEPT_TYPE"]
-                                }
-                            }
-                        })
+    es_hits = utils.get_es_docs_of_type(doc_type=os.environ["TERM_CONCEPT_TYPE"], size=size)
 
-    for es_hit in res.json()["hits"]["hits"]:
+    for es_hit in es_hits:
         term = concept.create_concept(es_hit["_source"])
         collection.members.append(term)
