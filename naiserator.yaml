@@ -28,7 +28,7 @@ spec:
     - name: PUBLISHER
       value: "https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782"
     - name: CATALOG_HOMEPAGE
-      value: "https://dataverk.nav.no"
+      value: "https://data.nav.no"
     - name: COLLECTION_IDENTIFIER
       value: {{collection_identifier}}
     - name: COLLECTION_PUBLISHER
