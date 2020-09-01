@@ -23,8 +23,8 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
             vcard:hasEmail <mailto:begrepskatalogen@nav.no> ;
             vcard:hasOrganizationName ""@nb ] ;
     ns1:definisjon [ a ns1:Definisjon ;
-            rdfs:label "Et bruksområde av Use Case som beskriver typiske forretningsoperasjoner mellom en aktør på utsiden og en organisasjon."@nb ;
-            dct:source [ rdfs:label "EESSI Architecture Overview Document"@nb ] ;
+            rdfs:label "<p>Et bruksområde av Use Case som beskriver typiske forretningsoperasjoner mellom en aktør på utsiden og en organisasjon.</p>"@nb ;
+            dct:source [ rdfs:label "<p>EESSI Architecture Overview Document</p>"@nb ] ;
             ns1:forholdTilKilde ns1:basertPåKilde ] .
 
 """

@@ -115,9 +115,11 @@ TERM_JSON = {'took': 27,
                                                         'offentlig_tilgjengelig': 'Ja',
                                                         'alternativ_navn': 'Bruksmønster, Forretningsbruksmønster, Samhandlingsmønster, BUC',
                                                         'clean_definisjon': 'Et bruksområde av Use Case som beskriver typiske forretningsoperasjoner mellom en aktør på utsiden og en organisasjon.',
+                                                        'html_definisjon': '<p>Et bruksområde av Use Case som beskriver typiske forretningsoperasjoner mellom en aktør på utsiden og en organisasjon.</p>',
                                                         'clean_begrepsforklaring': 'Business Use Case viser samhandling mellom aktører og forretningsprosesser, og trenger ikke inneholde referanser til teknologi. \r\n\r\nForkortelsen BUC inngår i  forkortelses-stammespråket i EESSI som betegnelse på modeller for meldingsflyten mellom aktører i en saksbehandlingsprosess.',
                                                         'clean_eksempel': '- Samhandling/informasjonsutveksling  for å avgjøre krav om arbeidsledighetsytelse\r\n- Samhandling/informasjonsutveksling  for å fastsette bosted etter EU-forordning 883/2004',
                                                         'clean_kilde': 'EESSI Architecture Overview Document',
+                                                        'html_kilde': '<p>EESSI Architecture Overview Document</p>',
                                                         'id': 'BEGREP-1694'}}}]
                       }
              }
