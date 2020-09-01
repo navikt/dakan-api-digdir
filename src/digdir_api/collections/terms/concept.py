@@ -7,7 +7,6 @@ from digdir_api.collections import utils
 
 def create_concept(es_hit: Mapping) -> Concept:
     term = Concept()
-    term.
     _add_mandatory_concept_props(term, es_hit)
     _add_optional_concept_props(term, es_hit)
 
