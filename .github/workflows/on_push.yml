@@ -23,6 +23,7 @@ jobs:
 
   build:
     name: build and push docker image
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
