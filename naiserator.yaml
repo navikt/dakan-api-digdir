@@ -47,6 +47,12 @@ spec:
       value: {{dataset_concept_identifier}}
     - name: DATASET_CONCEPT_TYPE
       value: {{dataset_concept_type}}
+    - name: API_COLLECTION_NAME
+      value: {{api_collection_name}}
+    - name: API_CONCEPT_IDENTIFIER
+      value: {{api_concept_identifier}}
+    - name: API_CONCEPT_TYPE
+      value: {{api_concept_type}}
     - name: ES_INDEX_ENDPOINT
       value: {{es_index_endpoint}}
     - name: CERT_PATH

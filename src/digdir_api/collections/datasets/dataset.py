@@ -23,7 +23,7 @@ def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
 
 
 def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
-    dataset.contactpoint = utils.create_contact(es_hit["contactPoint"])
+    dataset.contactpoint = utils.create_contact(es_hit)
     dataset.creator = URI(os.environ["PUBLISHER"])
     dataset.access_rights = URI(es_hit["accessRights"])
     dataset.frequency = URI(es_hit.get("periodicity", ""))

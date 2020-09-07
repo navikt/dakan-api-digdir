@@ -29,7 +29,7 @@ def _add_optional_concept_props(concept, es_hit) -> None:
     except KeyError:
         concept.subject = {"nb": ""}
 
-    concept.contactpoint = utils.create_contact({"email": os.environ["TERM_CONCEPT_CONTACT"]})
+    concept.contactpoint = utils.create_contact({"contactPoint": {"email": os.environ["TERM_CONCEPT_CONTACT"]}})
 
     date = dt.datetime.strptime(es_hit["content"]["oppdatert"].split('T')[0], "%Y-%m-%d")
     concept.modified = dt.date(year=date.year, month=date.month, day=date.day)

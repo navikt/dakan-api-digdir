@@ -6,13 +6,13 @@ authors = ["pbencze <paul.bencze@nav.no>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fastapi = "^0.55.1"
-python-dotenv = "^0.13.0"
+fastapi = "^0.61.1"
+python-dotenv = "^0.14.0"
 concepttordf = "^1.0.0-rc.7"
-datacatalogtordf = "1.0.2"
+datacatalogtordf = "1.0.3"
 uvicorn = "^0.11.3"
 requests = "^2.23.0"
-pytest = "^5.4.2"
+pytest = "^6.0.1"
 
 
 

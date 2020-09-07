@@ -7,13 +7,13 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://dataverk.nav.no> a skos:Collection ;
+<https://data.nav.no> a skos:Collection ;
     rdfs:label "Godkjente begreper"@nb ;
     dct:description "NAV godkjente begreper"@nb ;
     dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
-    skos:member <https://dataverk.nav.no/begrep/BEGREP-1694> .
+    skos:member <https://data.nav.no/begrep/BEGREP-1694> .
 
-<https://dataverk.nav.no/begrep/BEGREP-1694> a skos:Concept ;
+<https://data.nav.no/begrep/BEGREP-1694> a skos:Concept ;
     dct:modified "2020-05-05"^^xsd:date ;
     dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
     dct:subject "Ytelsesavdelingen"@nb ;
