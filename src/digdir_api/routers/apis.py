@@ -8,6 +8,6 @@ router = APIRouter()
 
 
 @router.get("/apis", response_class=ResponseModel)
-def get_all_datasets():
+def get_all_apis():
     apis = catalog.create_catalog()
     return Response(status_code=status.HTTP_200_OK, content=apis, media_type="text/turtle")
