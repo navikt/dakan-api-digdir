@@ -3,7 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from digdir_api.routers import health, terms, dataset
+from digdir_api.routers import health, terms, dataset, apis
 
 try:
     os.environ["PRODUCTION"]
@@ -18,3 +18,5 @@ app.mount("/digdir-api", subapi)
 subapi.include_router(health.router)
 subapi.include_router(terms.router)
 subapi.include_router(dataset.router)
+subapi.include_router(apis.router)
+

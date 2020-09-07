@@ -24,7 +24,7 @@ def _add_optional_catalog_props(catalog: Catalog) -> None:
     catalog.homepage = URI(os.environ["CATALOG_HOMEPAGE"])
 
 
-def _add_datasets(catalog: Catalog, size=10000) -> None:
+def _add_datasets(catalog: Catalog, size: int=10000) -> None:
     es_hits = utils.get_es_docs_of_type(doc_type=os.environ["DATASET_CONCEPT_TYPE"], size=size)
 
     for es_hit in es_hits:

@@ -1,4 +1,5 @@
 import os
+from isodate import parse_date
 from typing import Mapping
 
 import requests
@@ -7,11 +8,15 @@ from concepttordf.betydningsbeskrivelse import RelationToSource
 from datacatalogtordf import PeriodOfTime
 
 
-def create_contact(contactpoint: Mapping) -> Contact:
+def create_contact(es_hit: Mapping) -> Contact:
     contact = Contact()
 
-    contact.name = {"nb": contactpoint.get("name", "")}
-    contact.email = contactpoint["email"]
+    try:
+        contact.name = {"nb": es_hit["contactPoint"].get("name", "")}
+        contact.email = es_hit["contactPoint"]["email"]
+    except (KeyError, AttributeError):
+        contact.name = {"nb": es_hit["creator"].get("name", "")}
+        contact.email = es_hit["creator"]["email"]
 
     return contact
 
@@ -19,8 +24,8 @@ def create_contact(contactpoint: Mapping) -> Contact:
 def create_temporal_coverage(temporal: Mapping) -> PeriodOfTime:
     period = PeriodOfTime()
 
-    period.start_date = temporal["from"]
-    period.end_date = temporal["to"]
+    period.start_date = parse_date(temporal["from"]).strftime("%Y-%m-%d")
+    period.end_date = parse_date(temporal["to"]).strftime("%Y-%m-%d")
 
     return period
 

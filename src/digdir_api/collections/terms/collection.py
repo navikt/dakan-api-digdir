@@ -20,7 +20,7 @@ def _add_mandatory_collection_props(collection) -> None:
     collection.publisher = os.environ["PUBLISHER"]
 
 
-def _add_concepts(collection: Collection, size=10000) -> None:
+def _add_concepts(collection: Collection, size: int=10000) -> None:
     es_hits = utils.get_es_docs_of_type(doc_type=os.environ["TERM_CONCEPT_TYPE"], size=size)
 
     for es_hit in es_hits:
