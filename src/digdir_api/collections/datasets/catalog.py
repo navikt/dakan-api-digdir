@@ -1,5 +1,4 @@
 import os
-
 from datacatalogtordf import Catalog, URI
 from digdir_api.collections.datasets import dataset
 from digdir_api.collections import utils
@@ -11,7 +10,13 @@ def create_catalog() -> str:
     _add_optional_catalog_props(catalog)
     _add_datasets(catalog)
 
-    return catalog.to_rdf().decode()
+    cat_rdf = catalog.to_rdf()
+
+    for ds in catalog.datasets:
+        for dist in ds.distributions:
+            cat_rdf += dist.to_rdf()
+
+    return cat_rdf.decode()
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:

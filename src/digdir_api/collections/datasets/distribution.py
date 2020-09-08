@@ -16,6 +16,7 @@ def _add_mandatory_distribution_props(distribution: Distribution, resource: Mapp
     distribution.formats.append(resource["format"])
     distribution.access_URL = URI(resource["path"])
     distribution.identifier = URI(resource["path"])
+    distribution.license = URI("http://creativecommons.org/licenses/by/4.0/deed.no")
 
 
 def _add_optional_distribution_props(distribution: Distribution, resource: Mapping) -> None:
