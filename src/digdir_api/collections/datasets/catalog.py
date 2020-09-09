@@ -10,13 +10,7 @@ def create_catalog() -> str:
     _add_optional_catalog_props(catalog)
     _add_datasets(catalog)
 
-    cat_rdf = catalog.to_rdf()
-
-    for ds in catalog.datasets:
-        for dist in ds.distributions:
-            cat_rdf += dist.to_rdf()
-
-    return cat_rdf.decode()
+    return catalog.to_rdf().decode()
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
