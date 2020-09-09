@@ -58,3 +58,11 @@ def get_es_docs_of_type(doc_type: str, size: int):
                         })
 
     return res.json()["hits"]["hits"]
+
+
+def remove_prefix(dist: bytes):
+    dist_str = dist.decode()
+    dist_lines = dist_str.splitlines()
+    dist_str = '\n'.join(dist_lines[2:])
+
+    return dist_str.encode()
