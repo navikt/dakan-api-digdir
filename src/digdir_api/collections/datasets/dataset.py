@@ -22,6 +22,7 @@ def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.publisher = URI(os.environ["PUBLISHER"])
     dataset.language = utils.create_language(es_hit["language"])
     dataset.access_rights = utils.create_access_rights(es_hit["accessRights"])
+    print(utils.create_location(es_hit["spatial"]).to_rdf())
     dataset.spatial_coverage = utils.create_location(es_hit["spatial"])
 
 
@@ -34,8 +35,10 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
 
 
 def _add_distributions(dataset: Dataset, metadata_url: str):
-    res = requests.get(metadata_url)
+    res = requests.get(metadata_url).json()
+    if res.get("readme"):
+        dataset.description = {"nb": res["readme"]}
 
-    for resource in res.json()["resources"]:
+    for resource in res["resources"]:
         dist = distribution.create_distribution(resource)
         dataset.distributions.append(dist)

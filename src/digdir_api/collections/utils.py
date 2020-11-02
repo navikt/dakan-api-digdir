@@ -32,9 +32,7 @@ def create_temporal_coverage(temporal: Mapping) -> PeriodOfTime:
 
 def create_location(spatial: str) -> Location:
     location = Location()
-    if spatial.lower() in ["norge", "norway"]:
-        print("riktig location")
-        location.identifier = URI("http://sws.geonames.org/3144096/")
+    location.identifier = URI("http://sws.geonames.org/3144096/")
     return location
 
 

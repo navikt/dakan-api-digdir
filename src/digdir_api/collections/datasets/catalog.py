@@ -15,6 +15,7 @@ def create_catalog() -> str:
     for ds in catalog.datasets:
         for dist in ds.distributions:
             cat_rdf += utils.remove_prefix(dist.to_rdf())
+        cat_rdf += utils.remove_prefix(ds.spatial_coverage.to_rdf())
 
     return cat_rdf.decode()
 
