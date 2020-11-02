@@ -15,9 +15,8 @@ def create_catalog() -> str:
     for ds in catalog.datasets:
         for dist in ds.distributions:
             cat_rdf += utils.remove_prefix(dist.to_rdf())
-        cat_rdf += utils.remove_prefix(ds.spatial_coverage.to_rdf())
 
-    return cat_rdf.decode()
+    return cat_rdf.decode().replace("[ a dct:Location ]", "<http://sws.geonames.org/3144096/>")
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
