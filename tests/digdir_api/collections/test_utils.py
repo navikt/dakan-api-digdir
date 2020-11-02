@@ -44,17 +44,20 @@ class TestUtils(unittest.TestCase):
 
     def test_create_language_multiple(self):
         languages = ["Norsk", "English"]
+        expected_out_languages = ["http://publications.europa.eu/resource/authority/language/NOR",
+                                  "http://publications.europa.eu/resource/authority/language/ENG"]
         languages_out = create_language(languages)
         self.assertNotIsInstance(languages_out, str)
         self.assertIsInstance(languages_out, list)
-        self.assertEqual(languages, languages_out)
+        self.assertEqual(expected_out_languages, languages_out)
 
     def test_create_language_single(self):
         language = "Norsk"
+        expected_language_out = "http://publications.europa.eu/resource/authority/language/NOR"
         languages_out = create_language(language)
         self.assertNotIsInstance(languages_out, str)
         self.assertIsInstance(languages_out, list)
-        self.assertEqual([language], languages_out)
+        self.assertEqual([expected_language_out], languages_out)
 
     def test_create_access_rights_opendata(self):
         inputs = ["open", "opendata", "åpne data"]

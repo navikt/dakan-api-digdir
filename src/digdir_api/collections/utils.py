@@ -42,12 +42,21 @@ def create_format(dist_format):
     return "text/csv" if dist_format.lower() == "csv" else dist_format
 
 
+def get_language_uri(language):
+    if language.lower() in ["norsk", "norwegian", "nor"]:
+        return "http://publications.europa.eu/resource/authority/language/NOR"
+    elif language.lower() in ["engelsk", "english", "en"]:
+        return "http://publications.europa.eu/resource/authority/language/ENG"
+    else:
+        return language
+
+
 def create_language(language: Any):
-    return [language] if isinstance(language, str) else language
+    return [get_language_uri(language)] if isinstance(language, str) else [get_language_uri(l) for l in language]
 
 
 def create_access_rights(acces_rights: str):
-    return URI("http://publications.europa.eu/resource/authority/access-right/PUBLIC") \
+    return "http://publications.europa.eu/resource/authority/access-right/PUBLIC" \
         if acces_rights.lower() in ["open", "opendata", "åpne data"] else acces_rights
 
 
