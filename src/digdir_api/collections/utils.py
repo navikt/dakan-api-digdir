@@ -1,11 +1,11 @@
 import os
 from isodate import parse_date
-from typing import Mapping
+from typing import Mapping, Any
 
 import requests
 from concepttordf import Contact, Definition
 from concepttordf.betydningsbeskrivelse import RelationToSource
-from datacatalogtordf import PeriodOfTime
+from datacatalogtordf import PeriodOfTime, Location, URI
 
 
 def create_contact(es_hit: Mapping) -> Contact:
@@ -28,6 +28,27 @@ def create_temporal_coverage(temporal: Mapping) -> PeriodOfTime:
     period.end_date = parse_date(temporal["to"]).strftime("%Y-%m-%d")
 
     return period
+
+
+def create_location(spatial: str) -> Location:
+    location = Location()
+    if spatial.lower() in ["norge", "norway"]:
+        print("riktig location")
+        location.identifier = URI("http://sws.geonames.org/3144096/")
+    return location
+
+
+def create_format(dist_format):
+    return "text/csv" if dist_format.lower() == "csv" else dist_format
+
+
+def create_language(language: Any):
+    return [language] if isinstance(language, str) else language
+
+
+def create_access_rights(acces_rights: str):
+    return URI("http://publications.europa.eu/resource/authority/access-right/PUBLIC") \
+        if acces_rights.lower() in ["open", "opendata", "åpne data"] else acces_rights
 
 
 def create_definition(text: Mapping, source: Mapping) -> Definition:

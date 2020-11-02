@@ -1,9 +1,6 @@
 name: Build and deploy
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/digdir-api:${{ github.sha }}

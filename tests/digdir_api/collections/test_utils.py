@@ -3,7 +3,10 @@ import unittest
 
 from unittest import mock
 
+from datacatalogtordf import URI, Location
 from digdir_api.collections import utils
+from digdir_api.collections.utils import create_language, create_access_rights, create_location, create_format
+
 from tests.digdir_api.collections.test_resources.common import TERM_CONCEPT_TYPE, ES_INDEX_ENDPOINT, \
     DATASET_CONCEPT_TYPE
 from tests.digdir_api.collections.test_resources.dataset_response_json import DATASET_JSON
@@ -38,3 +41,42 @@ class TestUtils(unittest.TestCase):
         expected_washed_string = ""
         washed_string = utils.remove_new_line(string)
         self.assertEqual(washed_string, expected_washed_string)
+
+    def test_create_language_multiple(self):
+        languages = ["Norsk", "English"]
+        languages_out = create_language(languages)
+        self.assertNotIsInstance(languages_out, str)
+        self.assertIsInstance(languages_out, list)
+        self.assertEqual(languages, languages_out)
+
+    def test_create_language_single(self):
+        language = "Norsk"
+        languages_out = create_language(language)
+        self.assertNotIsInstance(languages_out, str)
+        self.assertIsInstance(languages_out, list)
+        self.assertEqual([language], languages_out)
+
+    def test_create_access_rights_opendata(self):
+        inputs = ["open", "opendata", "åpne data"]
+        expected_out = URI("http://publications.europa.eu/resource/authority/access-right/PUBLIC")
+        for input_access in inputs:
+            output = create_access_rights(input_access)
+            self.assertEqual(expected_out, output)
+
+    def test_create_location(self):
+        expected_location = Location()
+        expected_location.identifier = URI("http://sws.geonames.org/3144096/")
+
+        countries = ["Norge", "Norway"]
+        for country in countries:
+            location = create_location(country)
+            self.assertEqual(expected_location.identifier, location.identifier)
+
+    def test_create_format_csv(self):
+        inputs = ["csv", "CSV"]
+        for input_format in inputs:
+            self.assertEqual("text/csv", create_format(input_format))
+
+    def test_create_format_not_csv(self):
+        input_format = "application/x.wfs"
+        self.assertEqual("application/x.wfs", create_format(input_format))
