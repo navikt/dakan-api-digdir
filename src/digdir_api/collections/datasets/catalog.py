@@ -17,8 +17,8 @@ def create_catalog() -> str:
             cat_rdf += utils.remove_prefix(dist.to_rdf())
 
     return cat_rdf.decode().replace("[ a dct:Location ]", "<http://sws.geonames.org/3144096/>") \
-        .replace("<http://example.com/csv.gz>", "text/csv") \
-        .replace("<http://example.com/text/csv>", "text/csv")
+        .replace("<text/csv>", '"text/csv"') \
+        .replace("<text/csv>", '"text/csv"')
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:

@@ -36,8 +36,6 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
 
 def _add_distributions(dataset: Dataset, metadata_url: str):
     res = requests.get(metadata_url).json()
-    if res.get("readme"):
-        dataset.description = {"nb": res["readme"]}
 
     for resource in res["resources"]:
         dist = distribution.create_distribution(resource)
