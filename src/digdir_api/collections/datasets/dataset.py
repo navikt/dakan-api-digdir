@@ -18,7 +18,7 @@ def create_dataset(es_hit: Mapping) -> Dataset:
 def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.title = {"nb": utils.remove_new_line(es_hit["title"])}
     dataset.identifier = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"])
-    dataset.description = {"nb": es_hit["readme"] if es_hit.get("readme") else es_hit["description"]}
+    dataset.description = {"nb": es_hit["description"]}
     dataset.publisher = URI(os.environ["PUBLISHER"])
     dataset.language = utils.create_language(es_hit["language"])
     dataset.access_rights = utils.create_access_rights(es_hit["accessRights"])
