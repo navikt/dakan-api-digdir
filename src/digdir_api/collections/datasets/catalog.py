@@ -16,7 +16,9 @@ def create_catalog() -> str:
         for dist in ds.distributions:
             cat_rdf += utils.remove_prefix(dist.to_rdf())
 
-    return cat_rdf.decode()
+    return cat_rdf.decode().replace("[ a dct:Location ]", "<http://sws.geonames.org/3144096/>") \
+        .replace("<text/csv>", '"text/csv"') \
+        .replace("<text/csv>", '"text/csv"')
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:

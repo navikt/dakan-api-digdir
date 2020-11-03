@@ -1,11 +1,11 @@
 import os
 from isodate import parse_date
-from typing import Mapping
+from typing import Mapping, Any
 
 import requests
 from concepttordf import Contact, Definition
 from concepttordf.betydningsbeskrivelse import RelationToSource
-from datacatalogtordf import PeriodOfTime
+from datacatalogtordf import PeriodOfTime, Location, URI
 
 
 def create_contact(es_hit: Mapping) -> Contact:
@@ -28,6 +28,34 @@ def create_temporal_coverage(temporal: Mapping) -> PeriodOfTime:
     period.end_date = parse_date(temporal["to"]).strftime("%Y-%m-%d")
 
     return period
+
+
+def create_location(spatial: str) -> Location:
+    location = Location()
+    location.identifier = URI("http://sws.geonames.org/3144096/")
+    return location
+
+
+def create_format(dist_format):
+    return "text/csv" if dist_format.lower() in ["csv", "csv.gz"] else dist_format
+
+
+def get_language_uri(language):
+    if language.lower() in ["norsk", "norwegian", "nor"]:
+        return "http://publications.europa.eu/resource/authority/language/NOR"
+    elif language.lower() in ["engelsk", "english", "en"]:
+        return "http://publications.europa.eu/resource/authority/language/ENG"
+    else:
+        return language
+
+
+def create_language(language: Any):
+    return [get_language_uri(language)] if isinstance(language, str) else [get_language_uri(l) for l in language]
+
+
+def create_access_rights(acces_rights: str):
+    return "http://publications.europa.eu/resource/authority/access-right/PUBLIC" \
+        if acces_rights.lower() in ["open", "opendata", "åpne data"] else acces_rights
 
 
 def create_definition(text: Mapping, source: Mapping) -> Definition:
