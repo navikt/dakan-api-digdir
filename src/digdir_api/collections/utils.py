@@ -37,7 +37,7 @@ def create_location(spatial: str) -> Location:
 
 
 def create_format(dist_format):
-    return "text/csv" if dist_format.lower() == "csv" else dist_format
+    return "text/csv" if dist_format.lower() in ["csv", "csv.gz"] else dist_format
 
 
 def get_language_uri(language):
