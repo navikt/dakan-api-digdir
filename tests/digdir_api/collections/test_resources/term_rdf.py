@@ -10,12 +10,12 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
 <https://data.nav.no> a skos:Collection ;
     rdfs:label "Godkjente begreper"@nb ;
     dct:description "NAV godkjente begreper"@nb ;
-    dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
     skos:member <https://data.nav.no/begrep/BEGREP-1694> .
 
 <https://data.nav.no/begrep/BEGREP-1694> a skos:Concept ;
     dct:modified "2020-05-05"^^xsd:date ;
-    dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
     dct:subject "Ytelsesavdelingen"@nb ;
     skosxl:prefLabel [ a skosxl:Label ;
             skosxl:literalForm "Business Use Case (EESSI)"@nb ] ;

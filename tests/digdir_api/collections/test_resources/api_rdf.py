@@ -4,13 +4,13 @@ API_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
 
 <API.DatakatalogAPI> a dcat:DataService ;
     dct:description "Datakatalog api for s3 og elastic search"@nb ;
-    dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
     dct:title "Datakatalog API"@nb ;
     dcat:endpointDescription <https://data.nav.no/api/swagger/ui> ;
     dcat:endpointURL <https://data.nav.no/api> .
 
 <https://data.nav.no> a dcat:Catalog ;
-    dct:publisher <https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782> ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
     dct:title "NAV åpne APIer"@nb ;
     dcat:service <API.DatakatalogAPI> ;
     ns1:homepage <https://data.nav.no> .\n\n"""

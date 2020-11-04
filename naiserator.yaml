@@ -26,7 +26,7 @@ spec:
     failureThreshold: 30
   env:
     - name: PUBLISHER
-      value: "https://data.brreg.no/enhetsregisteret/oppslag/enheter/889640782"
+      value: "https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782"
     - name: CATALOG_HOMEPAGE
       value: "https://data.nav.no"
     - name: COLLECTION_IDENTIFIER
