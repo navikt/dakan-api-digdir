@@ -35,5 +35,6 @@ def _add_datasets(catalog: Catalog, size: int=10000) -> None:
     es_hits = utils.get_es_docs_of_type(doc_type=os.environ["DATASET_CONCEPT_TYPE"], size=size)
 
     for es_hit in es_hits:
-        ds = dataset.create_dataset(es_hit["_source"])
-        catalog.datasets.append(ds)
+        if not es_hit["_id"] in os.environ["DO_NOT_INCLUDE_DATASETS"].split(","):
+            ds = dataset.create_dataset(es_hit["_source"])
+            catalog.datasets.append(ds)

@@ -61,6 +61,8 @@ spec:
       value: {{cert_path}}
     - name: PRODUCTION
       value: "true"
+    - name: DO_NOT_INCLUDE_DATASETS
+      value: "79c53a5a03520e453c4defc346c53c94"
   ingresses:
     - {{ingress}}
   leaderElection: false
