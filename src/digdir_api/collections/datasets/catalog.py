@@ -16,9 +16,7 @@ def create_catalog() -> str:
         for dist in ds.distributions:
             cat_rdf += utils.remove_prefix(dist.to_rdf())
 
-    return cat_rdf.decode().replace("[ a dct:Location ]", "<http://sws.geonames.org/3144096/>") \
-        .replace("<text/csv>", '"text/csv"') \
-        .replace("<text/html>", '"text/html"')
+    return _clean_rdf(cat_rdf)
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
@@ -37,3 +35,9 @@ def _add_datasets(catalog: Catalog, size: int=10000) -> None:
     for es_hit in es_hits:
         ds = dataset.create_dataset(es_hit["_source"])
         catalog.datasets.append(ds)
+
+
+def _clean_rdf(cat_rdf):
+    return cat_rdf.decode().replace("[ a dct:Location ]", "<http://sws.geonames.org/3144096/>") \
+        .replace("<text/csv>", '"text/csv"') \
+        .replace("<text/html>", '"text/html"')
