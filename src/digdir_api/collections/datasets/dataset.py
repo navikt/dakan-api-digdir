@@ -1,9 +1,10 @@
 import os
 import requests
 from typing import Mapping
-from datacatalogtordf import Dataset, URI
+from datacatalogtordf import Dataset, URI, Distribution
 from digdir_api.collections.datasets import distribution
 from digdir_api.collections import utils
+from digdir_api.collections.utils import create_format
 
 
 def create_dataset(es_hit: Mapping) -> Dataset:
@@ -18,6 +19,7 @@ def create_dataset(es_hit: Mapping) -> Dataset:
 def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.title = {"nb": utils.remove_new_line(es_hit["title"])}
     dataset.identifier = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"])
+    dataset.landing_page = [os.environ["DATASET_CONCEPT_IDENTIFIER"] + es_hit["id"]]
     dataset.description = {"nb": es_hit["description"]}
     dataset.publisher = URI(os.environ["PUBLISHER"])
     dataset.language = utils.create_language(es_hit["language"])
@@ -34,8 +36,17 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
 
 
 def _add_distributions(dataset: Dataset, metadata_url: str):
-    res = requests.get(metadata_url).json()
+    dp_metadata = requests.get(metadata_url).json()
 
-    for resource in res["resources"]:
+    for resource in dp_metadata["resources"]:
         dist = distribution.create_distribution(resource)
         dataset.distributions.append(dist)
+
+    html_distribution = Distribution()
+    html_distribution.title = {"nb": dp_metadata["title"]}
+    html_distribution.formats = ["text/html"]
+    html_distribution.description = {"nb": dp_metadata["description"]}
+    html_distribution.identifier = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + dp_metadata["id"])
+    html_distribution.license = URI("http://creativecommons.org/licenses/by/4.0/deed.no")
+    html_distribution.access_URL = URI(os.environ["DATASET_CONCEPT_IDENTIFIER"] + dp_metadata["id"])
+    dataset.distributions.append(html_distribution)
