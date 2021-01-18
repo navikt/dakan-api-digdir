@@ -20,6 +20,7 @@ def _add_dataservices(catalog: Catalog, size: int = 10000):
     for es_hit in es_hits:
         data_service = api.create_api(es_hit["_source"])
         catalog.services.append(data_service)
+        print(data_service.publisher)
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
