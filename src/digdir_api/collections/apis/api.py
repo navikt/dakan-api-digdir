@@ -24,7 +24,6 @@ def _add_optional_props(api: DataService, es_hit: Mapping) -> None:
         api.endpointURL = es_hit["content"]["url"]
     except KeyError:
         pass
-    try:
-        api.endpointDescription = es_hit["content"].get("swagger", es_hit["content"]["api_desc"])
-    except KeyError:
-        pass
+
+    if es_hit["content"].get("swagger", es_hit["content"].get("api_dec")):
+        api.endpointDescription = es_hit["content"].get("swagger", es_hit["content"].get("api_dec"))
