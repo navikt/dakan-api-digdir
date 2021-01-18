@@ -11,9 +11,6 @@ def create_catalog():
     _add_dataservices(catalog)
     _add_mandatory_catalog_props(catalog)
     _add_optional_catalog_props(catalog)
-
-    print(catalog.to_rdf().decode())
-
     return catalog.to_rdf().decode()
 
 
@@ -22,7 +19,6 @@ def _add_dataservices(catalog: Catalog, size: int = 10000):
     for es_hit in es_hits:
         data_service = api.create_api(es_hit["_source"])
         catalog.services.append(data_service)
-        break
 
 
 def _add_mandatory_catalog_props(catalog: Catalog) -> None:
