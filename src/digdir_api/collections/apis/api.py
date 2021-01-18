@@ -20,5 +20,11 @@ def _add_mandatory_props(api: DataService, es_hit: Mapping) -> None:
 def _add_optional_props(api: DataService, es_hit: Mapping) -> None:
     api.publisher = URI(os.environ["PUBLISHER"])
     api.description = {"nb": es_hit["content"]["description"]}
-    api.endpointURL = es_hit["content"]["url"]
-    api.endpointDescription = es_hit["content"]["swagger"]
+    try:
+        api.endpointURL = es_hit["content"]["url"]
+    except KeyError:
+        pass
+    try:
+        api.endpointDescription = es_hit["content"]["swagger"]
+    except KeyError:
+        pass
