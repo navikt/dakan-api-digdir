@@ -2,8 +2,8 @@
 
 # Felles datakatalog API
 
-API for hente metadata i RDF format om NAV godkjente begreper og
-offentlig publiserte datasett.
+API for hente metadata i RDF format om godkjente begreper,
+offentlig publiserte datasett og apier i NAV.
 
 # API dokumentasjon
 API dokumentasjon finnes [her](https://data.nav.no/digdir-api/docs).
