@@ -29,6 +29,8 @@ spec:
       value: "https://data.brreg.no/enhetsregisteret/api/enheter/889640782"
     - name: CATALOG_HOMEPAGE
       value: "https://data.nav.no"
+    - name: NAV_API_PORTAL
+      value: "https://api-portal.nav.no/"
     - name: COLLECTION_IDENTIFIER
       value: {{collection_identifier}}
     - name: COLLECTION_PUBLISHER
