@@ -75,3 +75,16 @@ jobs:
           CLUSTER: prod-sbs
           RESOURCE: naiserator.yaml
           VARS: config-prod-sbs.json
+
+  deploy-prod-gcp:
+    name: deploy to nais prod-gcp cluster
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: nais/deploy/actions/deploy@v1
+      env:
+        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        CLUSTER: prod-gcp
+        RESOURCE: naiserator.yaml
+        VARS: config-prod-gcp.json

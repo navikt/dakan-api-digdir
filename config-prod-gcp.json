@@ -1,7 +1,7 @@
 {
   "application_name": "digdir-api",
   "namespace": "dataplattform",
-  "ingress": "https://data-ekstern.dev-gcp.nais.io/digdir-api",
+  "ingress": "https://data.nav.no/digdir-api",
   "team": "dataplattform",
   "collection_identifier": "https://data.nav.no",
   "collection_publisher": "https://nav.no",
