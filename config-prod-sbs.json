@@ -1,5 +1,6 @@
 {
   "application_name": "digdir-api",
+  "namespace": "default",
   "ingress": "https://data.nav.no/digdir-api",
   "team": "dataplattform",
   "collection_identifier": "https://data.nav.no",
