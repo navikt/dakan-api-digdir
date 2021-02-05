@@ -8,6 +8,10 @@ metadata:
 spec:
   image: {{image}}
   port: 8000
+  accessPolicy:
+    outbound:
+      rules:
+        - application: dataverk-api-external
   replicas:
     min: 2
     max: 3

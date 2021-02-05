@@ -38,19 +38,6 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
-    name: deploy to nais dev-sbs cluster
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-sbs
-          RESOURCE: naiserator.yaml
-          VARS: config-dev-sbs.json
-
-  deploy-dev-gcp:
     name: deploy to nais dev-gcp cluster
     needs: build
     runs-on: ubuntu-latest
@@ -64,19 +51,6 @@ jobs:
         VARS: config-dev-gcp.json
 
   deploy-prod:
-    name: deploy to nais prod-sbs cluster
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: prod-sbs
-          RESOURCE: naiserator.yaml
-          VARS: config-prod-sbs.json
-
-  deploy-prod-gcp:
     name: deploy to nais prod-gcp cluster
     needs: build
     runs-on: ubuntu-latest
