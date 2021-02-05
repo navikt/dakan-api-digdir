@@ -11,7 +11,7 @@
   "dataset_collection_name": "Datasett",
   "dataset_concept_identifier": "https://data.nav.no/datapakke/",
   "dataset_concept_type": "datapackage",
-  "es_index_endpoint": "https://dataverk-api-external.prod-gcp.nais.io/api/dcat",
+  "es_index_endpoint": "http://dataverk-api-external/api/dcat",
   "cert_path": "/etc/pki/tls/certs/ca-bundle.crt",
   "term_concept_contact": "begrepskatalogen@nav.no",
   "api_collection_name": "APIer",
