@@ -61,6 +61,8 @@ spec:
       value: {{api_concept_type}}
     - name: ES_INDEX_ENDPOINT
       value: {{es_index_endpoint}}
+    - name: BUCKET_ENDPOINT
+      value: {{bucket_endpoint}}
     - name: CERT_PATH
       value: {{cert_path}}
     - name: REQUESTS_CA_BUNDLE

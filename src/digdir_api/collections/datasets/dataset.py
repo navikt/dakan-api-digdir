@@ -11,7 +11,7 @@ def create_dataset(es_hit: Mapping) -> Dataset:
     dataset = Dataset()
     _add_mandatory_dataset_props(dataset, es_hit)
     _add_optional_dataset_props(dataset, es_hit)
-    _add_distributions(dataset, es_hit["url"])
+    _add_distributions(dataset, es_hit["id"])
 
     return dataset
 
@@ -35,8 +35,8 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"])
 
 
-def _add_distributions(dataset: Dataset, metadata_url: str):
-    dp_metadata = requests.get(metadata_url).json()
+def _add_distributions(dataset: Dataset, package_id: str):
+    dp_metadata = requests.get(f"{os.environ['BUCKET_ENDPOINT']}/{package_id}/datapackage.json").json()
 
     html_distribution = create_html_distribution(dp_metadata)
     dataset.distributions.append(html_distribution)
