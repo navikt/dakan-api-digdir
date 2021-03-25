@@ -71,7 +71,6 @@ def create_definition(text: Mapping, source: Mapping, relation_to_source: str) -
     definition = Definition()
     definition.text = text
     _set_relation_to_source(definition, relation_to_source)
-    definition.relationtosource = RelationToSource.basertPaKilde
     definition.source = source
     return definition
 
