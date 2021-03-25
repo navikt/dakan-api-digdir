@@ -58,9 +58,19 @@ def create_access_rights(acces_rights: str):
         if acces_rights.lower() in ["open", "opendata", "åpne data"] else acces_rights
 
 
-def create_definition(text: Mapping, source: Mapping) -> Definition:
+def _set_relation_to_source(definition: Definition, relation_to_source: str):
+    if relation_to_source.lower() == "basert på kilde":
+        definition.relationtosource = RelationToSource.basertPaKilde
+    elif relation_to_source.lower() == "sitat fra kilde":
+        definition.relationtosource = RelationToSource.sitatFraKilde
+    else:
+        definition.relationtosource = RelationToSource.egendefinert
+
+
+def create_definition(text: Mapping, source: Mapping, relation_to_source: str) -> Definition:
     definition = Definition()
     definition.text = text
+    _set_relation_to_source(definition, relation_to_source)
     definition.relationtosource = RelationToSource.basertPaKilde
     definition.source = source
     return definition
