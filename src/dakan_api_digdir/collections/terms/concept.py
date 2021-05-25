@@ -2,7 +2,7 @@ import os
 import datetime as dt
 from typing import Mapping
 from concepttordf import Concept
-from digdir_api.collections import utils
+from dakan_api_digdir.collections import utils
 
 
 def create_concept(es_hit: Mapping) -> Concept:

@@ -3,7 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from digdir_api.routers import health, terms, dataset, apis
+from dakan_api_digdir.routers import health, terms, dataset, apis
 
 try:
     os.environ["PRODUCTION"]

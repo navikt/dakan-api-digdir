@@ -4,8 +4,8 @@ import unittest
 from unittest import mock
 
 from datacatalogtordf import URI, Location
-from digdir_api.collections import utils
-from digdir_api.collections.utils import create_language, create_access_rights, create_location, create_format
+from dakan_api_digdir.collections import utils
+from dakan_api_digdir.collections.utils import create_language, create_access_rights, create_location, create_format
 
 from tests.digdir_api.collections.test_resources.common import TERM_CONCEPT_TYPE, ES_INDEX_ENDPOINT, \
     DATASET_CONCEPT_TYPE

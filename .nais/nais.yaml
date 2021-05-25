@@ -11,7 +11,7 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: dataverk-api-external
+        - application: dakan-api-les-ekstern
   replicas:
     min: 2
     max: 3
@@ -77,12 +77,3 @@ spec:
   prometheus:
     enabled: true
     path: /digdir-api/metrics
-  istio:
-    enabled: false
-  resources:
-    limits:
-      cpu: 400m
-      memory: 1024Mi
-    requests:
-      cpu: 50m
-      memory: 1024Mi

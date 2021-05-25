@@ -1,4 +1,4 @@
-name: Build and deploy
+name: Build and deploy dev
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/digdir-api:${{ github.sha }}
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}:${{ github.sha }}
 
 jobs:
   test:
@@ -47,18 +47,5 @@ jobs:
       env:
         APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
         CLUSTER: dev-gcp
-        RESOURCE: naiserator.yaml
-        VARS: config-dev-gcp.json
-
-  deploy-prod:
-    name: deploy to nais prod-gcp cluster
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: nais/deploy/actions/deploy@v1
-      env:
-        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-        CLUSTER: prod-gcp
-        RESOURCE: naiserator.yaml
-        VARS: config-prod-gcp.json
+        RESOURCE: .nais/naiserator.yaml
+        VARS: .nais/config-dev-gcp.json

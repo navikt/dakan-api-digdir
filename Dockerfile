@@ -11,4 +11,4 @@ RUN pip3 install poetry && \
 
 USER apprunner
 
-CMD ["uvicorn", "digdir_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "dakan_api_digdir.main:app", "--host", "0.0.0.0", "--port", "8000"]

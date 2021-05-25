@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "digdir-api"
+name = "dakan-api-digdir"
 version = "0.0.1"
 description = ""
 authors = ["pbencze <paul.bencze@nav.no>"]

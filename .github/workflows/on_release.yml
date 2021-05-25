@@ -1,0 +1,21 @@
+name: Deploy prod
+
+on:
+  release:
+    types: [published]
+
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}:${{ github.sha }}
+
+jobs:
+  deploy-prod:
+    name: deploy to nais prod-gcp cluster
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: nais/deploy/actions/deploy@v1
+      env:
+        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        CLUSTER: prod-gcp
+        RESOURCE: .nais/nais.yaml
+        VARS: .nais/config-prod-gcp.json

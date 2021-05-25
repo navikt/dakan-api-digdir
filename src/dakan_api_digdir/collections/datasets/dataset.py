@@ -2,9 +2,9 @@ import os
 import requests
 from typing import Mapping
 from datacatalogtordf import Dataset, URI
-from digdir_api.collections.datasets import distribution
-from digdir_api.collections import utils
-from digdir_api.collections.datasets.distribution import create_html_distribution
+from dakan_api_digdir.collections.datasets import distribution
+from dakan_api_digdir.collections import utils
+from dakan_api_digdir.collections.datasets.distribution import create_html_distribution
 
 
 def create_dataset(es_hit: Mapping) -> Dataset:

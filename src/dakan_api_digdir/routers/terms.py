@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi.responses import Response
 from fastapi import status
-from digdir_api.models.response_model import ResponseModel
-from digdir_api.collections.terms import collection
+from dakan_api_digdir.models.response_model import ResponseModel
+from dakan_api_digdir.collections.terms import collection
 
 router = APIRouter()
 

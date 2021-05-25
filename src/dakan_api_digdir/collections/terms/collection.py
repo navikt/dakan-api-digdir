@@ -1,8 +1,8 @@
 import os
 
 from concepttordf import Collection
-from digdir_api.collections.terms import concept
-from digdir_api.collections import utils
+from dakan_api_digdir.collections.terms import concept
+from dakan_api_digdir.collections import utils
 
 
 def create_collection() -> str:

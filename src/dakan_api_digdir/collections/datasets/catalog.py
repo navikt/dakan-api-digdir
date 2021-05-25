@@ -1,7 +1,7 @@
 import os
 from datacatalogtordf import Catalog, URI
-from digdir_api.collections.datasets import dataset
-from digdir_api.collections import utils
+from dakan_api_digdir.collections.datasets import dataset
+from dakan_api_digdir.collections import utils
 
 
 def create_catalog() -> str:

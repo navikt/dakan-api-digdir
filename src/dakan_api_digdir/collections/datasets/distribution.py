@@ -2,8 +2,8 @@ import os
 
 from typing import Mapping
 from datacatalogtordf import Distribution, URI
-from digdir_api.collections import utils
-from digdir_api.collections.utils import create_format
+from dakan_api_digdir.collections import utils
+from dakan_api_digdir.collections.utils import create_format
 
 
 def create_html_distribution(dp_metadata: dict):

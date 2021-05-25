@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from starlette import status
 from starlette.responses import Response
-from digdir_api.collections.apis import catalog
-from digdir_api.models.response_model import ResponseModel
+from dakan_api_digdir.collections.apis import catalog
+from dakan_api_digdir.models.response_model import ResponseModel
 
 router = APIRouter()
 

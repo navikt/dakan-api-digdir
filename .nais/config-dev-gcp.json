@@ -1,5 +1,5 @@
 {
-  "application_name": "digdir-api",
+  "application_name": "dakan-api-digdir",
   "namespace": "dataplattform",
   "ingress": "https://data-ekstern.dev-gcp.nais.io/digdir-api",
   "team": "dataplattform",

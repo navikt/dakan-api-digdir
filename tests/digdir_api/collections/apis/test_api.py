@@ -2,7 +2,7 @@ import os
 import unittest
 
 from unittest import mock
-from digdir_api.collections.apis import catalog
+from dakan_api_digdir.collections.apis import catalog
 from tests.digdir_api.collections.test_resources.common import ES_INDEX_ENDPOINT,  PUBLISHER, COLLECTION_IDENTIFIER,\
     API_CONCEPT_TYPE, CATALOG_HOMEPAGE
 from tests.digdir_api.collections.test_resources.mock_es_index import mock_requests_post
