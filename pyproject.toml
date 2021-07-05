@@ -6,7 +6,7 @@ authors = ["pbencze <paul.bencze@nav.no>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fastapi = "^0.63.0"
+fastapi = "^0.66.0"
 python-dotenv = "^0.15.0"
 concepttordf = "^1.0.0-rc.7"
 datacatalogtordf = "1.1.0"
