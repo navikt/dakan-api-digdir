@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}:${{ github.sha }}
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
 
 jobs:
   deploy-prod:
