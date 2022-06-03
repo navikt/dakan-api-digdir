@@ -18,17 +18,24 @@ class TestUtils(unittest.TestCase):
 
     def setUp(self):
         os.environ["ES_INDEX_ENDPOINT"] = ES_INDEX_ENDPOINT
+        os.environ["ES_INDEX_ENDPOINT_TERMS"] = ES_INDEX_ENDPOINT
 
     def tearDown(self):
         del os.environ["ES_INDEX_ENDPOINT"]
+        del os.environ["ES_INDEX_ENDPOINT_TERMS"]
 
     @mock.patch("requests.post", side_effect=mock_requests_post)
     def test_get_es_docs_of_type(self, mock_post):
-        doc_types = [(TERM_CONCEPT_TYPE, TERM_JSON), (DATASET_CONCEPT_TYPE, DATASET_JSON)]
+        doc_types = [(DATASET_CONCEPT_TYPE, DATASET_JSON)]
         for doc_type in doc_types:
             with self.subTest(msg=f"Testing doc_type: {doc_type[0]}", _input=doc_type[0]):
                 es_doc = utils.get_es_docs_of_type(doc_type[0], 10000)
                 self.assertEqual(es_doc, doc_type[1]["hits"]["hits"])
+
+    @mock.patch("requests.post", side_effect=mock_requests_post)
+    def test_get_es_docs_of_type(self, mock_post):
+        es_docs = utils.get_terms()
+        self.assertEqual(es_docs, TERM_JSON["hits"]["hits"])
 
     def test_remove_new_line_valid(self):
         string = "test\r\ntest\r\n"
@@ -61,7 +68,8 @@ class TestUtils(unittest.TestCase):
 
     def test_create_access_rights_opendata(self):
         inputs = ["open", "opendata", "åpne data"]
-        expected_out = URI("http://publications.europa.eu/resource/authority/access-right/PUBLIC")
+        expected_out = URI(
+            "http://publications.europa.eu/resource/authority/access-right/PUBLIC")
         for input_access in inputs:
             output = create_access_rights(input_access)
             self.assertEqual(expected_out, output)
