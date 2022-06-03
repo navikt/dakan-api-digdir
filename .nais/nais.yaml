@@ -63,7 +63,7 @@ spec:
     - name: API_CONCEPT_TYPE
       value: {{api_concept_type}}
     - name: ES_INDEX_ENDPOINT
-      value: {{es_index_endpoint}}
+      value: "http://dakan-api-les-ekstern.dataplattform/api/dcat"
     - name: BUCKET_ENDPOINT
       value: {{bucket_endpoint}}
     - name: CERT_PATH
@@ -73,7 +73,7 @@ spec:
     - name: PRODUCTION
       value: "true"
     - name: ES_INDEX_ENDPOINT_TERMS
-      value: "http://teamdatajegerne.begreps-api/api/dcat"
+      value: "http://begreps-api.teamdatajegerne/api/dcat"
     - name: DO_NOT_INCLUDE_DATASETS
       value: "79c53a5a03520e453c4defc346c53c94"
   ingresses:
