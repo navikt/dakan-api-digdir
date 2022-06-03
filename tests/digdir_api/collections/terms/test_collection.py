@@ -13,6 +13,7 @@ class TestCollection(unittest.TestCase):
 
     def setUp(self):
         os.environ["ES_INDEX_ENDPOINT"] = ES_INDEX_ENDPOINT
+        os.environ["ES_INDEX_ENDPOINT_TERMS"] = ES_INDEX_ENDPOINT
         os.environ["COLLECTION_IDENTIFIER"] = COLLECTION_IDENTIFIER
         os.environ["TERM_COLLECTION_NAME"] = TERM_COLLECTION_NAME
         os.environ["TERM_CONCEPT_TYPE"] = TERM_CONCEPT_TYPE
@@ -24,4 +25,3 @@ class TestCollection(unittest.TestCase):
     def test_create_collection(self, mock_post):
         terms_rdf = collection.create_collection()
         self.assertEqual(terms_rdf, TERMS_RDF)
-
