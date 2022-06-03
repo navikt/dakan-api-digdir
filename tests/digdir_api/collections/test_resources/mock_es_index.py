@@ -33,11 +33,12 @@ def mock_requests_post(url: str, json: dict):
 
 
 def get_type_json(json: dict):
-    doc_type = json["query"]["match"]["type"]
-
-    if doc_type == TERM_CONCEPT_TYPE:
+    try:
+        doc_type = json["query"]["match"]["type"]
+    except KeyError:
         return TERM_JSON
-    elif doc_type == API_CONCEPT_TYPE:
-        return API_JSON
     else:
-        return DATASET_JSON
+        if doc_type == API_CONCEPT_TYPE:
+            return API_JSON
+        else:
+            return DATASET_JSON
