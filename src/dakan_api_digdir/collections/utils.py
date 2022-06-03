@@ -92,9 +92,15 @@ def get_es_docs_of_type(doc_type: str, size: int):
                                     "type": doc_type
                                 }
                             }
-                        })
+    })
 
     return res.json()["hits"]["hits"]
+
+
+def get_terms():
+    res = requests.post(
+        
+    )
 
 
 def remove_prefix(dist: bytes):
