@@ -9,7 +9,7 @@
     "dataset_collection_name": "Datasett",
     "dataset_concept_identifier": "https://data.nav.no/datapakke/",
     "dataset_concept_type": "datapackage",
-    "bucket_endpoint": "http://dakan-api-les-ekstern/api/nav-opendata",
+    "bucket_endpoint": "http://dakan-api-les-ekstern.dataplattform/api/nav-opendata",
     "cert_path": "/etc/pki/tls/certs/ca-bundle.crt",
     "term_concept_contact": "begrepskatalogen@nav.no",
     "api_collection_name": "APIer",
