@@ -98,9 +98,23 @@ def get_es_docs_of_type(doc_type: str, size: int):
 
 
 def get_terms():
-    res = requests.post(
-        
-    )
+    res = requests.post(os.environ["ES_INDEX_ENDPOINT_TERMS"],
+                        json={"size": 10000,
+                              "query": {
+                                  "bool": {
+                                      "must": [
+                                          {"match": {"type": "begrep"}},
+                                          {"match": {
+                                              "content.status": "Godkjent begrep"}},
+                                          {"match": {
+                                              "content.offentlig_tilgjengelig": "Ja"}}
+                                      ]
+                                  }
+                              }
+                              }
+                        )
+
+    return res.json()["hits"]["hits"]
 
 
 def remove_prefix(dist: bytes):
