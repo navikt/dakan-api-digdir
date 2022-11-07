@@ -14,7 +14,7 @@ def create_api(es_hit: Mapping) -> DataService:
 
 def _add_mandatory_props(api: DataService, es_hit: Mapping) -> None:
     api.title = {"nb": es_hit["title"]}
-    api.identifier = es_hit["id"]
+    api.identifier = f"{os.environ['API_CONCEPT_IDENTIFIER']}/{es_hit['id']}"
     api.publisher = URI(os.environ["PUBLISHER"])
     if es_hit.get("master") == "NAV API PORTAL":
         api.landing_page = [os.environ["NAV_API_PORTAL"]]
