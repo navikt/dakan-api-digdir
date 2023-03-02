@@ -1,6 +1,6 @@
 {
     "application_name": "dakan-api-digdir",
-    "ingress": "https://data-ekstern.dev-gcp.nais.io/digdir-api",
+    "ingress": "https://data-ekstern.dev.intern.nav.no/digdir-api",
     "collection_identifier": "https://data.nav.no",
     "collection_publisher": "https://nav.no",
     "term_collection_name": "Godkjente begreper",
