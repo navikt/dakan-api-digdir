@@ -10,7 +10,7 @@ def create_collection() -> str:
     _add_mandatory_collection_props(collection)
     _add_concepts(collection)
 
-    return collection.to_rdf().decode()
+    return collection.to_rdf()
 
 
 def _add_mandatory_collection_props(collection) -> None:

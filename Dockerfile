@@ -1,4 +1,4 @@
-FROM navikt/python:3.8
+FROM navikt/python:3.10
 
 COPY . /app
 WORKDIR /app
