@@ -7,7 +7,7 @@ authors = ["pbencze <paul.bencze@nav.no>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 fastapi = "^0.95.0"
-python-dotenv = "^0.19.0"
+python-dotenv = "^0.21.1"
 concepttordf = "^1.0.0-rc.7"
 datacatalogtordf = "1.4.7"
 uvicorn = "^0.21.1"
