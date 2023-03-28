@@ -24,7 +24,7 @@ def _add_mandatory_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.publisher = URI(os.environ["PUBLISHER"])
     dataset.language = utils.create_language(es_hit["language"])
     dataset.access_rights = utils.create_access_rights(es_hit["accessRights"])
-    dataset.spatial_coverage = utils.create_location(es_hit["spatial"])
+    dataset.spatial = utils.create_location(es_hit["spatial"])
 
 
 def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
@@ -32,7 +32,7 @@ def _add_optional_dataset_props(dataset: Dataset, es_hit: Mapping) -> None:
     dataset.creator = URI(os.environ["PUBLISHER"])
     dataset.frequency = URI(es_hit.get("periodicity", ""))
     dataset.license = URI(es_hit["license"]["url"])
-    dataset.temporal_coverage = utils.create_temporal_coverage(es_hit["temporal"])
+    dataset.temporal = utils.create_temporal_coverage(es_hit["temporal"])
 
 
 def _add_distributions(dataset: Dataset, package_id: str):
