@@ -50,12 +50,6 @@ spec:
       value: {{term_concept_contact}}
     - name: TERM_CONCEPT_TYPE
       value: {{term_concept_type}}
-    - name: DATASET_COLLECTION_NAME
-      value: {{dataset_collection_name}}
-    - name: DATASET_CONCEPT_IDENTIFIER
-      value: {{dataset_concept_identifier}}
-    - name: DATASET_CONCEPT_TYPE
-      value: {{dataset_concept_type}}
     - name: API_COLLECTION_NAME
       value: {{api_collection_name}}
     - name: API_CONCEPT_IDENTIFIER
@@ -74,8 +68,6 @@ spec:
       value: "true"
     - name: ES_INDEX_ENDPOINT_TERMS
       value: "http://begreps-api.teamdatajegerne/api/dcat"
-    - name: DO_NOT_INCLUDE_DATASETS
-      value: "79c53a5a03520e453c4defc346c53c94"
   ingresses:
     - {{ingress}}
   leaderElection: false

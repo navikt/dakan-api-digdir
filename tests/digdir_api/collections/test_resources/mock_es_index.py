@@ -2,7 +2,6 @@ import requests
 
 from tests.digdir_api.collections.test_resources.common import ES_INDEX_ENDPOINT
 from tests.digdir_api.collections.test_resources.common import API_CONCEPT_TYPE
-from tests.digdir_api.collections.test_resources.dataset_response_json import DATASET_JSON
 from tests.digdir_api.collections.test_resources.term_response_json import TERM_JSON
 from tests.digdir_api.collections.test_resources.api_response_json import API_JSON
 
@@ -40,5 +39,3 @@ def get_type_json(json: dict):
     else:
         if doc_type == API_CONCEPT_TYPE:
             return API_JSON
-        else:
-            return DATASET_JSON
