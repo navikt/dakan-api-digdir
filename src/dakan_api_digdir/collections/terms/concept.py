@@ -18,7 +18,15 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
     concept.term = {
         "name": {"nb": utils.remove_new_line(es_hit["title"])}
     }
+    concept.term = {
+        "name": {"nn": utils.remove_new_line(es_hit["content"].get("termNN"))}
+    }
+    concept.term = {
+        "name": {"en": utils.remove_new_line(es_hit["content"].get("termEN"))}
+    }
     concept.definition = utils.create_definition({"nb": utils.remove_new_line(es_hit["content"].get("clean_definisjon"))},
+                                                 {"nn": utils.remove_new_line(es_hit["content"].get("clean_definisjonNN"))},
+                                                 {"en": utils.remove_new_line(es_hit["content"].get("clean_definisjonEN"))},
                                                  {"text": {"nb": utils.remove_new_line(es_hit["content"].get("clean_kilde"))}},
                                                  es_hit["content"].get("forhold_til_kilde"))
     concept.publisher = os.environ["PUBLISHER"]
@@ -26,7 +34,7 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
 
 def _add_optional_concept_props(concept, es_hit) -> None:
     try:
-        concept.subject = {"nb": utils.remove_new_line(es_hit["content"]["fagomrade"])}
+        concept.subject = {"nb": utils.remove_new_line(es_hit["content"]["clean_komponenter"])}
     except KeyError:
         concept.subject = {"nb": ""}
 
