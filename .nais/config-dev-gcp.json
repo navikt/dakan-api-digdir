@@ -1,15 +1,4 @@
 {
-    "application_name": "dakan-api-digdir",
     "ingress": "https://data-ekstern.intern.dev.nav.no/digdir-api",
-    "collection_identifier": "https://data.nav.no",
-    "collection_publisher": "https://nav.no",
-    "term_collection_name": "Godkjente begreper",
-    "term_concept_identifier": "https://data.nav.no/begrep/",
-    "term_concept_type": "godkjent_begrep",
-    "bucket_endpoint": "http://dakan-api-les-ekstern/api/nav-opendata",
-    "cert_path": "/etc/pki/tls/certs/ca-bundle.crt",
-    "term_concept_contact": "begrepskatalogen@nav.no",
-    "api_collection_name": "APIer",
-    "api_concept_identifier": "https://data.nav.no/apier/",
-    "api_concept_type": "api"
+    "bucket": "http://dakan-api-les-ekstern/api/nav-opendata"
 }

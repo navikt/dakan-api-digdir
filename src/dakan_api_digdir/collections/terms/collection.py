@@ -14,9 +14,13 @@ def create_collection() -> str:
 
 
 def _add_mandatory_collection_props(collection) -> None:
-    collection.identifier = os.environ["COLLECTION_IDENTIFIER"]
+    collection.identifier = "https://data.nav.no"
     collection.description = {"nb": "NAV godkjente begreper"}
-    collection.name = {"nb": os.environ["TERM_COLLECTION_NAME"]}
+    collection.description = {"nn": "NAV godkjende omgrep"}
+    collection.description = {"en": "NAV approved terms"}
+    collection.name = {"nb": "Godkjente begreper"}
+    collection.name = {"nn": "Godkjende omgrep"}
+    collection.name = {"en": "Approved terms"}
     collection.publisher = os.environ["PUBLISHER"]
 
 

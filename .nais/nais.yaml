@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: {{application_name}}
+  name: dakan-api-digdir
   namespace: nada
   labels:
     team: nada
@@ -39,38 +39,33 @@ spec:
     - name: NAV_API_PORTAL
       value: "https://api-portal.nav.no/"
     - name: COLLECTION_IDENTIFIER
-      value: {{collection_identifier}}
+      value: "https://data.nav.no"
     - name: COLLECTION_PUBLISHER
-      value: {{collection_publisher}}
-    - name: TERM_COLLECTION_NAME
-      value: {{term_collection_name}}
-    - name: TERM_CONCEPT_IDENTIFIER
-      value: {{term_concept_identifier}}
+      value: "https://nav.no"
     - name: TERM_CONCEPT_CONTACT
-      value: {{term_concept_contact}}
+      value: "begrepskatalogen@nav.no"
     - name: TERM_CONCEPT_TYPE
-      value: {{term_concept_type}}
+      value: "godkjent_begrep"
     - name: API_COLLECTION_NAME
-      value: {{api_collection_name}}
+      value: "APIer"
     - name: API_CONCEPT_IDENTIFIER
-      value: {{api_concept_identifier}}
+      value: "https://data.nav.no/apier/"
     - name: API_CONCEPT_TYPE
-      value: {{api_concept_type}}
+      value: "api"
     - name: ES_INDEX_ENDPOINT
       value: "http://dakan-api-les-ekstern.dataplattform/api/dcat"
     - name: BUCKET_ENDPOINT
-      value: {{bucket_endpoint}}
+      value: {{bucket}}
     - name: CERT_PATH
-      value: {{cert_path}}
+      value: "/etc/pki/tls/certs/ca-bundle.crt"
     - name: REQUESTS_CA_BUNDLE
-      value: {{cert_path}}
+      value: "/etc/pki/tls/certs/ca-bundle.crt"
     - name: PRODUCTION
       value: "true"
     - name: ES_INDEX_ENDPOINT_TERMS
       value: "http://begreps-api.teamdatajegerne/api/dcat"
   ingresses:
     - {{ingress}}
-  leaderElection: false
   prometheus:
     enabled: true
     path: /digdir-api/metrics
