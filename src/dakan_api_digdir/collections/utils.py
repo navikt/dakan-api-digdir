@@ -13,9 +13,13 @@ def create_contact(es_hit: Mapping) -> Contact:
 
     try:
         contact.name = {"nb": es_hit["contactPoint"].get("name", "")}
+        contact.name = {"nn": es_hit["contactPoint"].get("name", "")}
+        contact.name = {"en": es_hit["contactPoint"].get("name", "")}
         contact.email = es_hit["contactPoint"]["email"]
     except (KeyError, AttributeError):
         contact.name = {"nb": es_hit["creator"].get("name", "")}
+        contact.name = {"nn": es_hit["creator"].get("name", "")}
+        contact.name = {"en": es_hit["creator"].get("name", "")}
         contact.email = es_hit["creator"]["email"]
 
     return contact
