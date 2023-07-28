@@ -16,27 +16,39 @@ def create_concept(es_hit: Mapping) -> Concept:
 def _add_mandatory_concept_props(concept, es_hit) -> None:
     concept.identifier = os.environ["TERM_CONCEPT_IDENTIFIER"] + es_hit["id"]
     concept.term = {
-        "name": {"nb": utils.remove_new_line(es_hit["title"])}
+        "name": {
+            "nb": utils.remove_new_line(es_hit["title"]),
+            "nn": utils.remove_new_line(es_hit["content"].get("termNN")),
+            "en": utils.remove_new_line(es_hit["content"].get("termEN"))
+        }
     }
-    concept.term = {
-        "name": {"nn": utils.remove_new_line(es_hit["content"].get("termNN"))}
+    text = {
+        "nb": utils.remove_new_line(es_hit["content"].get("clean_definisjon")),
+        "nn": utils.remove_new_line(es_hit["content"].get("clean_definisjonNN")),
+        "en": utils.remove_new_line(es_hit["content"].get("clean_definisjonEN"))
     }
-    concept.term = {
-        "name": {"en": utils.remove_new_line(es_hit["content"].get("termEN"))}
+    source = {
+        "text": {
+            "nb": utils.remove_new_line(es_hit["content"].get("clean_kilde"))
+        }
     }
-    concept.definition = utils.create_definition({"nb": utils.remove_new_line(es_hit["content"].get("clean_definisjon"))},
-                                                 {"nn": utils.remove_new_line(es_hit["content"].get("clean_definisjonNN"))},
-                                                 {"en": utils.remove_new_line(es_hit["content"].get("clean_definisjonEN"))},
-                                                 {"text": {"nb": utils.remove_new_line(es_hit["content"].get("clean_kilde"))}},
-                                                 es_hit["content"].get("forhold_til_kilde"))
+    concept.definition = utils.create_definition(text, source, es_hit["content"].get("forhold_til_kilde"))
     concept.publisher = os.environ["PUBLISHER"]
 
 
 def _add_optional_concept_props(concept, es_hit) -> None:
     try:
-        concept.subject = {"nb": utils.remove_new_line(es_hit["content"]["clean_komponenter"])}
+        concept.subject = {
+            "nb": utils.remove_new_line(es_hit["content"]["clean_komponenter"]),
+            "nn": "",
+            "en": ""
+        }
     except KeyError:
-        concept.subject = {"nb": ""}
+        concept.subject = {
+            "nb": "",
+            "nn": "",
+            "en": ""
+        }
 
     concept.contactpoint = utils.create_contact({"contactPoint": {"email": os.environ["TERM_CONCEPT_CONTACT"]}})
 
