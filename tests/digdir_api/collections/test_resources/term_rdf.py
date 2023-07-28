@@ -23,6 +23,10 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
     dct:subject ""@en,
         "Ytelsesavdelingen"@nb,
         ""@nn ;
+    skosxl:altLabel [ a skosxl:Label ;
+            skosxl:literalForm ""@nb ] ;
+    skosxl:hiddenLabel [ a skosxl:Label ;
+            skosxl:literalForm ""@nb ] ;
     skosxl:prefLabel [ a skosxl:Label ;
             skosxl:literalForm ""@en,
                 "Business Use Case (EESSI)"@nb,

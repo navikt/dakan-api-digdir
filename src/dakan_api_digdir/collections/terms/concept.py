@@ -14,25 +14,28 @@ def create_concept(es_hit: Mapping) -> Concept:
 
 
 def _add_mandatory_concept_props(concept, es_hit) -> None:
+    content = es_hit["content"]
     concept.identifier = es_hit["id"]
+    concept.alternativeterm = {"name": {"nb": [utils.remove_new_line(content.get("synonym"))]}}
+    concept.hiddenterm = {"name": {"nb": [utils.remove_new_line(content.get("fraraadd_term"))]}}
     concept.term = {
         "name": {
             "nb": utils.remove_new_line(es_hit["title"]),
-            "nn": utils.remove_new_line(es_hit["content"].get("termNN")),
-            "en": utils.remove_new_line(es_hit["content"].get("termEN"))
+            "nn": utils.remove_new_line(content.get("termNN")),
+            "en": utils.remove_new_line(content.get("termEN"))
         }
     }
     text = {
-        "nb": utils.remove_new_line(es_hit["content"].get("clean_definisjon")),
-        "nn": utils.remove_new_line(es_hit["content"].get("clean_definisjonNN")),
-        "en": utils.remove_new_line(es_hit["content"].get("clean_definisjonEN"))
+        "nb": utils.remove_new_line(content.get("clean_definisjon")),
+        "nn": utils.remove_new_line(content.get("clean_definisjonNN")),
+        "en": utils.remove_new_line(content.get("clean_definisjonEN"))
     }
     source = {
         "text": {
-            "nb": utils.remove_new_line(es_hit["content"].get("clean_kilde"))
+            "nb": utils.remove_new_line(content.get("clean_kilde"))
         }
     }
-    concept.definition = utils.create_definition(text, source, es_hit["content"].get("forhold_til_kilde"))
+    concept.definition = utils.create_definition(text, source, content.get("forhold_til_kilde"))
     concept.publisher = os.environ["PUBLISHER"]
 
 
