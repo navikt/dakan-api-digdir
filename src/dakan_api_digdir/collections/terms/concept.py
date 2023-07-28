@@ -14,7 +14,7 @@ def create_concept(es_hit: Mapping) -> Concept:
 
 
 def _add_mandatory_concept_props(concept, es_hit) -> None:
-    concept.identifier = os.environ["TERM_CONCEPT_IDENTIFIER"] + es_hit["id"]
+    concept.identifier = es_hit["id"]
     concept.term = {
         "name": {
             "nb": utils.remove_new_line(es_hit["title"]),

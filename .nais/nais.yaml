@@ -46,8 +46,6 @@ spec:
       value: "begrepskatalogen@nav.no"
     - name: TERM_CONCEPT_TYPE
       value: "godkjent_begrep"
-    - name: TERM_CONCEPT_IDENTIFIER
-      value: "https://data.nav.no/begrep/"
     - name: API_COLLECTION_NAME
       value: "APIer"
     - name: API_CONCEPT_IDENTIFIER

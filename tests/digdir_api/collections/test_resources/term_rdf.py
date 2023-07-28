@@ -15,9 +15,9 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
         "NAV godkjente begreper"@nb,
         "NAV godkjende omgrep"@nn ;
     dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
-    skos:member <https://data.nav.no/begrep/BEGREP-1694> .
+    skos:member <BEGREP-1694> .
 
-<https://data.nav.no/begrep/BEGREP-1694> a skos:Concept ;
+<BEGREP-1694> a skos:Concept ;
     dct:modified "2020-05-05"^^xsd:date ;
     dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/889640782> ;
     dct:subject ""@en,
