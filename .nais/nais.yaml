@@ -68,6 +68,3 @@ spec:
       value: "http://begreps-api.teamdatajegerne/api/dcat"
   ingresses:
     - {{ingress}}
-  prometheus:
-    enabled: true
-    path: /digdir-api/metrics
