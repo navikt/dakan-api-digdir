@@ -30,12 +30,17 @@ def _add_mandatory_concept_props(concept, es_hit) -> None:
         "nn": utils.remove_new_line(content.get("clean_definisjonNN")),
         "en": utils.remove_new_line(content.get("clean_definisjonEN"))
     }
+    remark = {
+        "nb": utils.remove_new_line(content.get("clean_begrepsforklaring")),
+        "nn": utils.remove_new_line(content.get("clean_begrepsforklaringNN")),
+        "en": utils.remove_new_line(content.get("clean_begrepsforklaringEN"))
+    }
     source = {
         "text": {
             "nb": utils.remove_new_line(content.get("clean_kilde"))
         }
     }
-    concept.definition = utils.create_definition(text, source, content.get("forhold_til_kilde"))
+    concept.definition = utils.create_definition(text, remark, source, content.get("forhold_til_kilde"))
     concept.publisher = os.environ["PUBLISHER"]
 
 

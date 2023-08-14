@@ -75,9 +75,10 @@ def _set_relation_to_source(definition: Definition, relation_to_source: str):
         definition.relationtosource = RelationToSource.egendefinert
 
 
-def create_definition(text: Mapping, source: Mapping, relation_to_source: str) -> Definition:
+def create_definition(text: Mapping, remark: Mapping, source: Mapping, relation_to_source: str) -> Definition:
     definition = Definition()
     definition.text = text
+    definition.remark = remark
     _set_relation_to_source(definition, relation_to_source)
     definition.source = source
     return definition
