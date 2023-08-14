@@ -41,6 +41,9 @@ TERMS_RDF = """@prefix dcat: <http://www.w3.org/ns/dcat#> .
                 "Et bruksområde av Use Case som beskriver typiske forretningsoperasjoner mellom en aktør på utsiden og en organisasjon."@nb,
                 ""@nn ;
             dct:source [ rdfs:label "EESSI Architecture Overview Document"@nb ] ;
+            skos:scopeNote ""@en,
+                "Business Use Case viser samhandling mellom aktører og forretningsprosesser, og trenger ikke inneholde referanser til teknologi. Forkortelsen BUC inngår i  forkortelses-stammespråket i EESSI som betegnelse på modeller for meldingsflyten mellom aktører i en saksbehandlingsprosess."@nb,
+                ""@nn ;
             ns1:forholdTilKilde ns1:basertPåKilde ] .
 
 """
