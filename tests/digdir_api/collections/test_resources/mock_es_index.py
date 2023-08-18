@@ -3,7 +3,6 @@ import requests
 from tests.digdir_api.collections.test_resources.common import ES_INDEX_ENDPOINT
 from tests.digdir_api.collections.test_resources.common import API_CONCEPT_TYPE
 from tests.digdir_api.collections.test_resources.term_response_json import TERM_JSON
-from tests.digdir_api.collections.test_resources.api_response_json import API_JSON
 
 
 class MockEsIndexResponse:
@@ -26,16 +25,6 @@ class MockEsIndexResponse:
 # Mock method used to replace requests.post
 def mock_requests_post(url: str, json: dict):
     if url == ES_INDEX_ENDPOINT:
-        return MockEsIndexResponse(get_type_json(json), 200)
+        return MockEsIndexResponse(TERM_JSON, 200)
     else:
         return MockEsIndexResponse(None, 404)
-
-
-def get_type_json(json: dict):
-    try:
-        doc_type = json["query"]["match"]["type"]
-    except KeyError:
-        return TERM_JSON
-    else:
-        if doc_type == API_CONCEPT_TYPE:
-            return API_JSON
