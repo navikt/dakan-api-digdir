@@ -15,7 +15,7 @@ def create_concept(es_hit: Mapping) -> Concept:
 
 def _add_mandatory_concept_props(concept, es_hit) -> None:
     content = es_hit["content"]
-    concept.identifier = es_hit["id"]
+    concept.identifier = f"https://begreper.nav.no/{es_hit['id']}"
     concept.alternativeterm = {"name": {"nb": [utils.remove_new_line(content.get("clean_synonym"))]}}
     concept.hiddenterm = {"name": {"nb": [utils.remove_new_line(content.get("clean_fraraadd_term"))]}}
     concept.term = {
