@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: 'Ingress'
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: https://data.norge.no/concepts?orgPath=/STAT/983887457/889640782
+  labels:
+    team: nada
+  name: begreper-redirect 
+  namespace: nada
+spec:
+  ingressClassName: nais-ingress-external
+  rules:
+    - host: begreper.nav.no
