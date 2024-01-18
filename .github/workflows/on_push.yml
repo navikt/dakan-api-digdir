@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+  IMAGE: dakan-api-digdir
 
 jobs:
   test:
@@ -23,31 +23,31 @@ jobs:
     - name: Run unittests
       run: pytest
 
-  build:
+  build-and-push:
     name: build and push docker image
     needs: test
     runs-on: ubuntu-latest
     permissions:
-      packages: write
       contents: read
+      id-token: write
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
+      - name: Push docker image to GAR
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ env.IMAGE }}
-          context: .
+          team: nada
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
   deploy-dev:
     name: deploy to nais dev-gcp cluster
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       id-token: write
     steps:
     - uses: actions/checkout@v4
@@ -56,3 +56,4 @@ jobs:
         CLUSTER: dev-gcp
         RESOURCE: .nais/nais.yaml
         VARS: .nais/config-dev-gcp.json
+        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data-ekstern.intern.dev.nav.no/digdir-api

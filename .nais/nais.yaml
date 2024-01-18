@@ -11,8 +11,6 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: dakan-api-les-ekstern
-          namespace: dataplattform
         - application: begreps-api
           namespace: teamdatajegerne
   replicas:
@@ -54,8 +52,6 @@ spec:
       value: "api"
     - name: ES_INDEX_ENDPOINT
       value: "http://dakan-api-les-ekstern.dataplattform/api/dcat"
-    - name: BUCKET_ENDPOINT
-      value: {{bucket}}
     - name: CERT_PATH
       value: "/etc/pki/tls/certs/ca-bundle.crt"
     - name: REQUESTS_CA_BUNDLE
