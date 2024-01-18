@@ -55,5 +55,4 @@ jobs:
       env:
         CLUSTER: dev-gcp
         RESOURCE: .nais/nais.yaml
-        VARS: .nais/config-dev-gcp.json
         VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data-ekstern.intern.dev.nav.no/digdir-api
