@@ -1,9 +1,6 @@
-name: Build and deploy dev
+name: Build and deploy
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 env:
   IMAGE: dakan-api-digdir
@@ -56,3 +53,19 @@ jobs:
         CLUSTER: dev-gcp
         RESOURCE: .nais/nais.yaml
         VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data-ekstern.intern.dev.nav.no/digdir-api
+
+  deploy-prod:
+    name: deploy to nais prod-gcp cluster
+    needs: [build-and-push, deploy-dev]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+    - uses: actions/checkout@v4
+    - uses: nais/deploy/actions/deploy@v2
+      if: github.ref == 'refs/heads/main'
+      env:
+        CLUSTER: prod-gcp
+        RESOURCE: .nais/nais.yaml
+        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data.nav.no/digdir-api
