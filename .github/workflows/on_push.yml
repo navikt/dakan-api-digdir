@@ -44,7 +44,7 @@ jobs:
 
   deploy-dev:
     name: deploy to nais dev-gcp cluster
-    needs: build
+    needs: build-and-push
     runs-on: ubuntu-latest
     permissions:
       contents: read
