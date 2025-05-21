@@ -2,7 +2,7 @@
 
 ![](https://github.com/navikt/digdir-api/workflows/Build%20and%20deploy/badge.svg)
 
-API for hente metadata i RDF format om godkjente begreper og apier i NAV.
+API for hente metadata i RDF format om godkjente begreper i NAV.
 
 # API dokumentasjon
 API dokumentasjon finnes på [data.nav.no](https://data.nav.no/digdir-api/docs).
