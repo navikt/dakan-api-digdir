@@ -10,7 +10,7 @@ fastapi = "^0.115.0"
 concepttordf = "^2.0.2"
 datacatalogtordf = "3.0.0"
 python-dotenv = "^1.0.0"
-uvicorn = "^0.34.0"
+uvicorn = "^0.35.0"
 requests = "^2.28.0"
 pytest = "^8.0.0"
 
