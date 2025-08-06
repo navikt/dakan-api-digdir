@@ -12,8 +12,9 @@ WORKDIR /app
 
 RUN pip3 install poetry && \
     poetry install
-ENV PATH="/app/.venv/bin:$PATH"
+
+WORKDIR /app/.venv/bin
 
 USER apprunner
 
-CMD ["uvicorn", "dakan_api_digdir.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["./uvicorn", "dakan_api_digdir.main:app", "--host", "0.0.0.0", "--port", "8000"]
