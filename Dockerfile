@@ -1,5 +1,7 @@
 FROM python:3.10-alpine as builder
 
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+
 WORKDIR /app
 
 # Install Poetry
