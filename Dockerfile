@@ -1,16 +1,30 @@
-FROM python:3.10-slim
+FROM python:3.10-alpine as builder
 
-COPY . /app
 WORKDIR /app
 
-USER root
+# Install Poetry
+RUN pip install poetry
 
-RUN pip3 install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install
+# Copy Poetry files and install dependencies
+COPY . /app
+RUN poetry install
 
-RUN groupadd --system --gid 1069 apprunner
-RUN useradd --system --uid 1069 --gid apprunner apprunner
+# Create apprunner user
+RUN apk update && apk add --no-cache \
+    shadow \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/*
+    
+RUN groupadd --system --gid 1069 apprunner && \
+    useradd --system --uid 1069 --gid 1069 apprunner
+
+FROM python:3.10-alpine
+
+COPY --from=builder /app /app
+COPY --from=builder /etc/passwd /etc/passwd
+
+WORKDIR /app
+ENV PATH="/app/.venv/bin:${PATH}"
 
 USER apprunner
 
