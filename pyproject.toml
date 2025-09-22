@@ -6,7 +6,7 @@ authors = ["NADA"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
-fastapi = "^0.116.0"
+fastapi = "^0.117.1"
 concepttordf = "^2.0.2"
 datacatalogtordf = "3.0.0"
 python-dotenv = "^1.0.0"
