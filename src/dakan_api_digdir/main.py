@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+
 from dakan_api_digdir.routers import health, terms
 
 try:
@@ -12,7 +13,7 @@ except KeyError:
     load_dotenv()
 
 app = FastAPI()
-subapi = FastAPI(docs_url="/docs", openapi_prefix="/digdir-api")
+subapi = FastAPI(docs_url="/docs", root_path="/digdir-api")
 
 app.mount("/digdir-api", subapi)
 subapi.include_router(health.router)

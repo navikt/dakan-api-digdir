@@ -1,4 +1,4 @@
-FROM python:3.10-alpine as builder
+FROM python:3.12-alpine AS builder
 
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
@@ -20,7 +20,7 @@ RUN apk update && apk add --no-cache \
 RUN groupadd --system --gid 1069 apprunner && \
     useradd --system --uid 1069 --gid 1069 apprunner
 
-FROM python:3.10-alpine
+FROM python:3.12-alpine
 
 COPY --from=builder /app /app
 COPY --from=builder /etc/passwd /etc/passwd
