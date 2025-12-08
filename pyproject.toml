@@ -8,7 +8,7 @@ authors = ["NADA"]
 python = ">=3.10,<3.13"
 concepttordf = "^3.0.0"
 datacatalogtordf = "4.0.0"
-fastapi = "^0.123.0"
+fastapi = "^0.124.0"
 isodate = "^0.7.2"
 pytest = "^9.0.0"
 python-dotenv = "^1.0.0"
