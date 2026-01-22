@@ -129,7 +129,6 @@ dmypy.json
 .pyre/
 
 **/.env
-poetry.lock
 .idea
 *.egg-info
 .vscode
