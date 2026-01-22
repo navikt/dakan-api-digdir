@@ -64,7 +64,7 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     - uses: nais/deploy/actions/deploy@v2
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       env:
         CLUSTER: prod-gcp
         RESOURCE: .nais/nais.yaml
