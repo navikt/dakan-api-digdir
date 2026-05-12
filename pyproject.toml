@@ -11,7 +11,7 @@ datacatalogtordf = "4.0.1"
 fastapi = "0.136.1"
 isodate = "0.7.2"
 python-dotenv = "1.2.2"
-requests = "2.33.1"
+requests = "2.34.0"
 uvicorn = "0.46.0"
 
 [tool.poetry.group.dev.dependencies]
