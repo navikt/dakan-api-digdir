@@ -15,7 +15,7 @@ requests = "2.34.2"
 uvicorn = "0.49.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "9.0.3"
+pytest = "9.1.0"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
