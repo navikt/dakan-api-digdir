@@ -2,9 +2,9 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: dakan-api-digdir
-  namespace: nada
+  namespace: ekstern-datautveksling
   labels:
-    team: nada
+    team: ekstern-datautveksling
 spec:
   image: {{image}}
   port: 8000
@@ -12,7 +12,6 @@ spec:
     outbound:
       rules:
         - application: begreps-api
-          namespace: teamdatajegerne
   replicas:
     min: 2
     max: 3
@@ -59,6 +58,6 @@ spec:
     - name: PRODUCTION
       value: "true"
     - name: ES_INDEX_ENDPOINT_TERMS
-      value: "http://begreps-api.teamdatajegerne/api/dcat"
+      value: "http://begreps-api/api/terms"
   ingresses:
     - {{ingress}}
