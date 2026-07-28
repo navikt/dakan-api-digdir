@@ -1,6 +1,9 @@
 name: Build and deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 env:
   IMAGE: dakan-api-digdir
@@ -35,7 +38,7 @@ jobs:
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: nada
+          team: ekstern-datautveksling
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
@@ -52,7 +55,7 @@ jobs:
       env:
         CLUSTER: dev-gcp
         RESOURCE: .nais/nais.yaml
-        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data-ekstern.intern.dev.nav.no/digdir-api
+        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://dakan-api-digdir.intern.dev.nav.no/digdir-api
 
   deploy-prod:
     name: deploy to nais prod-gcp cluster
