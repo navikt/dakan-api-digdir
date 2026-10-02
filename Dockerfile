@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.23 AS builder
+FROM python:3.12-slim-trixie AS builder
 
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
@@ -12,15 +12,10 @@ COPY . /app
 RUN poetry install
 
 # Create apprunner user
-RUN apk update && apk add --no-cache \
-    shadow \
-    && rm -rf /var/cache/apk/* \
-    && rm -rf /tmp/*
-    
 RUN groupadd --system --gid 1069 apprunner && \
     useradd --system --uid 1069 --gid 1069 apprunner
 
-FROM python:3.12-alpine3.23
+FROM python:3.12-slim-trixie
 
 COPY --from=builder /app /app
 COPY --from=builder /etc/passwd /etc/passwd
