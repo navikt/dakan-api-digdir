@@ -68,4 +68,4 @@ jobs:
       env:
         CLUSTER: prod-gcp
         RESOURCE: .nais/nais.yaml
-        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://data.nav.no/digdir-api
+        VAR: image=${{ needs.build-and-push.outputs.image }},ingress=https://begreper.nav.no/digdir-api
